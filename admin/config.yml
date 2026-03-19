@@ -1,0 +1,53 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "products"
+    label: "产品管理"
+    files:
+      - name: "product-list"
+        label: "产品列表"
+        file: "data/products.json"
+        format: "json"
+        fields:
+          - name: "products"
+            label: "产品"
+            widget: "list"
+            summary: "{{fields.name}} — {{fields.cat}}"
+            fields:
+              - { name: "id", label: "产品ID", widget: "number", value_type: "int" }
+              - { name: "name", label: "产品名称", widget: "string" }
+              - { name: "cat", label: "产品分类", widget: "select", options: ["Pool Mosaic", "Wall Tile", "Floor Tile", "Glass Mosaic", "Kit Kat", "Subway", "Terracotta", "Strip Tile"] }
+              - { name: "color", label: "颜色分类", widget: "select", options: ["blue", "green", "white", "black", "beige", "brown", "gray", "mixed"] }
+              - { name: "material", label: "材质", widget: "select", options: ["Ceramic", "Porcelain", "Glass", "Natural Stone", "Terracotta"] }
+              - { name: "app", label: "应用场景", widget: "select", options: ["Swimming Pool", "Bathroom", "Kitchen Backsplash", "Outdoor", "Feature Wall", "Commercial Projects"] }
+              - { name: "chip", label: "芯片尺寸 (Chip Size)", widget: "string" }
+              - { name: "sheet", label: "片材尺寸 (Sheet Size)", widget: "string" }
+              - { name: "finish", label: "表面处理 (Finish)", widget: "string" }
+              - { name: "slip", label: "防滑等级", widget: "string", default: "-" }
+              - { name: "desc", label: "产品描述", widget: "text" }
+              - { name: "badge", label: "标签 (如 New / Best Seller)", widget: "string", required: false }
+              - { name: "image", label: "产品图片", widget: "image", required: false }
+              - { name: "grad", label: "备用渐变色 (无图片时显示)", widget: "string", required: false }
+
+  - name: "settings"
+    label: "网站设置"
+    files:
+      - name: "site-settings"
+        label: "基本信息"
+        file: "data/settings.json"
+        format: "json"
+        fields:
+          - { name: "company_name", label: "公司名称", widget: "string", default: "Flora Art Casa" }
+          - { name: "tagline", label: "标语", widget: "string" }
+          - { name: "email", label: "联系邮箱", widget: "string" }
+          - { name: "phone", label: "电话", widget: "string", required: false }
+          - { name: "whatsapp", label: "WhatsApp 号码 (含国际区号，如 8613800138000)", widget: "string", required: false }
+          - { name: "address", label: "公司地址", widget: "string" }
+          - { name: "instagram", label: "Instagram 链接", widget: "string", required: false }
+          - { name: "facebook", label: "Facebook 链接", widget: "string", required: false }
+          - { name: "youtube", label: "YouTube 链接", widget: "string", required: false }

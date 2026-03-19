@@ -1,0 +1,1876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flora Art Casa — Premium Mosaic & Art Tiles</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* === CSS RESET & VARIABLES === */
+/* SECTION:variables */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --blue: #2844A8;
+  --blue-dark: #1c3280;
+  --blue-light: #3a5acc;
+  --gold: #C9A96E;
+  --gold-light: #e0c992;
+  --cream: #FAF7F2;
+  --sand: #F0EBE3;
+  --charcoal: #2A2A2A;
+  --gray-700: #444;
+  --gray-500: #777;
+  --gray-300: #bbb;
+  --gray-100: #f4f4f4;
+  --white: #fff;
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-body: 'Outfit', system-ui, sans-serif;
+  --header-h: 68px;
+  --announce-h: 40px;
+  --ease-out: cubic-bezier(.22, .61, .36, 1);
+  --ease-spring: cubic-bezier(.34, 1.56, .64, 1);
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  color: var(--charcoal);
+  background: var(--white);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+a { text-decoration: none; color: inherit; }
+button { border: none; background: none; cursor: pointer; font-family: inherit; }
+ul, ol { list-style: none; }
+img { max-width: 100%; display: block; }
+/* === ANNOUNCEMENT BAR === */
+#announcement-bar {
+  background: var(--blue);
+  color: var(--white);
+  text-align: center;
+  padding: 10px 20px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .5px;
+  position: relative;
+  z-index: 1000;
+  height: var(--announce-h);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#announcement-bar a { color: var(--gold-light); text-decoration: underline; margin-left: 6px; }
+#announcement-bar .announce-close {
+  position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
+  color: rgba(255,255,255,.6); font-size: 18px; line-height: 1;
+}
+#announcement-bar .announce-close:hover { color: #fff; }
+/* === HEADER === */
+#site-header {
+  position: sticky; top: 0; z-index: 900;
+  background: var(--white);
+  border-bottom: 1px solid rgba(0,0,0,.06);
+  height: var(--header-h);
+  transition: box-shadow .3s, transform .3s;
+}
+#site-header.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,.08); }
+.header-inner {
+  max-width: 1440px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 40px; height: 100%;
+}
+.header-logo {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--font-display); font-size: 22px; color: var(--blue);
+  cursor: pointer; flex-shrink: 0;
+}
+.header-logo .logo-mark {
+  width: 36px; height: 36px; background: var(--blue); border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gold); font-size: 18px; font-weight: 700;
+}
+.header-logo span { letter-spacing: -.5px; }
+.header-nav { display: flex; align-items: center; gap: 0; }
+.header-nav .nav-item {
+  position: relative; padding: 0 18px; height: var(--header-h);
+  display: flex; align-items: center;
+  font-size: 14px; font-weight: 500; letter-spacing: .3px;
+  color: var(--charcoal); cursor: pointer;
+  transition: color .2s;
+}
+.header-nav .nav-item::after {
+  content: ''; position: absolute; bottom: 0; left: 18px; right: 18px;
+  height: 2px; background: var(--blue); transform: scaleX(0);
+  transition: transform .25s var(--ease-out);
+}
+.header-nav .nav-item:hover { color: var(--blue); }
+.header-nav .nav-item:hover::after,
+.header-nav .nav-item.active::after { transform: scaleX(1); }
+.header-nav .nav-item .arrow {
+  margin-left: 5px; font-size: 9px; transition: transform .2s;
+}
+.header-nav .nav-item:hover .arrow { transform: rotate(180deg); }
+.header-icons { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+.header-icons .icon-btn {
+  width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
+  border-radius: 50%; transition: background .2s;
+  color: var(--charcoal); font-size: 18px;
+}
+.header-icons .icon-btn:hover { background: var(--gray-100); }
+.hamburger {
+  display: none; flex-direction: column; gap: 5px; padding: 8px;
+}
+.hamburger span {
+  width: 22px; height: 2px; background: var(--charcoal);
+  transition: .3s;
+}
+/* === MEGA MENU === */
+.mega-menu {
+  position: absolute; top: var(--header-h); left: 0; width: 100%;
+  background: var(--white); border-top: 1px solid rgba(0,0,0,.06);
+  box-shadow: 0 20px 60px rgba(0,0,0,.1);
+  opacity: 0; visibility: hidden;
+  transform: translateY(-8px);
+  transition: opacity .25s var(--ease-out), transform .25s var(--ease-out), visibility .25s;
+  z-index: 800; padding: 0;
+}
+.mega-menu.open { opacity: 1; visibility: visible; transform: translateY(0); }
+.mega-inner {
+  max-width: 1440px; margin: 0 auto;
+  display: flex; padding: 36px 40px 40px;
+  gap: 0;
+}
+.mega-col {
+  flex: 1; padding: 0 24px;
+  border-right: 1px solid rgba(0,0,0,.06);
+}
+.mega-col:last-child { border-right: none; }
+.mega-col:first-child { padding-left: 0; }
+.mega-col h4 {
+  font-family: var(--font-body);
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--blue); margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--gold-light);
+}
+.mega-col ul li {
+  margin-bottom: 6px;
+}
+.mega-col ul li a {
+  font-size: 13.5px; color: var(--gray-700);
+  transition: color .15s, padding-left .15s;
+  display: block; padding: 3px 0;
+}
+.mega-col ul li a:hover {
+  color: var(--blue); padding-left: 4px;
+}
+.mega-featured {
+  flex: 0 0 260px; padding-left: 24px;
+}
+.mega-featured-img {
+  width: 100%; aspect-ratio: 4/5; border-radius: 8px; overflow: hidden;
+  background: linear-gradient(135deg, var(--blue) 0%, var(--blue-light) 50%, var(--gold) 100%);
+  position: relative;
+}
+.mega-featured-img .overlay-text {
+  position: absolute; bottom: 20px; left: 20px; right: 20px;
+  color: var(--white);
+}
+.mega-featured-img .overlay-text h5 {
+  font-family: var(--font-display); font-size: 18px; margin-bottom: 4px;
+}
+.mega-featured-img .overlay-text p {
+  font-size: 12px; opacity: .85;
+}
+/* === SEARCH OVERLAY === */
+#search-overlay {
+  position: fixed; top: 0; left: 0; width: 100%; z-index: 1100;
+  background: var(--white);
+  box-shadow: 0 10px 40px rgba(0,0,0,.12);
+  transform: translateY(-100%);
+  transition: transform .35s var(--ease-out);
+  padding: 0;
+}
+#search-overlay.open { transform: translateY(0); }
+.search-inner {
+  max-width: 800px; margin: 0 auto; padding: 48px 40px 40px;
+}
+.search-inner .search-box {
+  display: flex; align-items: center; border-bottom: 2px solid var(--blue);
+  padding-bottom: 8px; gap: 12px;
+}
+.search-inner .search-box svg { width: 22px; height: 22px; color: var(--blue); flex-shrink: 0; }
+.search-inner .search-box input {
+  flex: 1; border: none; outline: none; font-size: 22px;
+  font-family: var(--font-display); color: var(--charcoal);
+  background: transparent;
+}
+.search-inner .search-box input::placeholder { color: var(--gray-300); }
+.search-close-btn {
+  position: absolute; top: 16px; right: 24px;
+  width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
+  font-size: 24px; color: var(--gray-500);
+  border-radius: 50%; transition: background .2s;
+}
+.search-close-btn:hover { background: var(--gray-100); }
+.search-popular {
+  margin-top: 24px;
+}
+.search-popular h6 {
+  font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--gray-500); margin-bottom: 12px;
+}
+.search-popular .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.search-popular .tags a {
+  padding: 6px 16px; border-radius: 20px;
+  background: var(--sand); font-size: 13px; color: var(--gray-700);
+  transition: background .2s, color .2s;
+}
+.search-popular .tags a:hover {
+  background: var(--blue); color: var(--white);
+}
+.search-results { margin-top: 24px; }
+.search-results .sr-item {
+  display: flex; align-items: center; gap: 16px;
+  padding: 12px 0; border-bottom: 1px solid var(--gray-100);
+  cursor: pointer; transition: background .15s;
+}
+.search-results .sr-item:hover { background: var(--cream); margin: 0 -12px; padding: 12px; border-radius: 8px; }
+.search-results .sr-thumb {
+  width: 56px; height: 56px; border-radius: 6px; flex-shrink: 0;
+}
+.search-results .sr-info h6 { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+.search-results .sr-info p { font-size: 12px; color: var(--gray-500); }
+#search-backdrop {
+  position: fixed; inset: 0; background: rgba(0,0,0,.4);
+  z-index: 1050; opacity: 0; visibility: hidden;
+  transition: opacity .3s;
+}
+#search-backdrop.open { opacity: 1; visibility: visible; }
+/* === MOBILE MENU === */
+#mobile-menu {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: var(--white); z-index: 950;
+  transform: translateX(-100%);
+  transition: transform .35s var(--ease-out);
+  overflow-y: auto; padding: 0;
+}
+#mobile-menu.open { transform: translateX(0); }
+.mobile-menu-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 20px; border-bottom: 1px solid var(--gray-100);
+}
+.mobile-menu-close { font-size: 22px; color: var(--charcoal); padding: 8px; }
+.mobile-nav-list { padding: 8px 0; }
+.mobile-nav-item { border-bottom: 1px solid var(--gray-100); }
+.mobile-nav-item > .mobile-nav-link {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 20px; font-size: 15px; font-weight: 500;
+}
+.mobile-nav-item > .mobile-nav-link .m-arrow {
+  font-size: 12px; transition: transform .2s;
+}
+.mobile-nav-item.open > .mobile-nav-link .m-arrow { transform: rotate(180deg); }
+.mobile-sub-menu {
+  max-height: 0; overflow: hidden;
+  transition: max-height .35s var(--ease-out);
+  background: var(--cream);
+}
+.mobile-nav-item.open .mobile-sub-menu { max-height: 800px; }
+.mobile-sub-menu .sub-group { padding: 12px 20px 8px; }
+.mobile-sub-menu .sub-group h5 {
+  font-size: 11px; font-weight: 700; letter-spacing: 1.2px;
+  text-transform: uppercase; color: var(--blue); margin-bottom: 8px;
+}
+.mobile-sub-menu .sub-group a {
+  display: block; padding: 5px 0; font-size: 14px; color: var(--gray-700);
+}
+/* === HERO === */
+.hero {
+  position: relative; height: 85vh; min-height: 560px; max-height: 800px;
+  overflow: hidden; display: flex; align-items: center;
+  background: linear-gradient(135deg, #1a2f6d 0%, #2844A8 35%, #3a5acc 65%, #6b8fd4 100%);
+}
+.hero::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 80%, rgba(201,169,110,.25) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(255,255,255,.08) 0%, transparent 40%);
+}
+.hero-pattern {
+  position: absolute; inset: 0; opacity: .06;
+  background-image:
+    linear-gradient(30deg, #fff 12%, transparent 12.5%, transparent 87%, #fff 87.5%, #fff),
+    linear-gradient(150deg, #fff 12%, transparent 12.5%, transparent 87%, #fff 87.5%, #fff),
+    linear-gradient(30deg, #fff 12%, transparent 12.5%, transparent 87%, #fff 87.5%, #fff),
+    linear-gradient(150deg, #fff 12%, transparent 12.5%, transparent 87%, #fff 87.5%, #fff),
+    linear-gradient(60deg, rgba(255,255,255,.5) 25%, transparent 25.5%, transparent 75%, rgba(255,255,255,.5) 75%, rgba(255,255,255,.5)),
+    linear-gradient(60deg, rgba(255,255,255,.5) 25%, transparent 25.5%, transparent 75%, rgba(255,255,255,.5) 75%, rgba(255,255,255,.5));
+  background-size: 80px 140px;
+  background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px;
+}
+.hero-content {
+  position: relative; z-index: 2;
+  max-width: 1440px; margin: 0 auto; padding: 0 60px;
+  width: 100%;
+}
+.hero-badge {
+  display: inline-block;
+  padding: 6px 18px; border-radius: 20px;
+  background: rgba(255,255,255,.12);
+  backdrop-filter: blur(8px);
+  color: var(--gold-light);
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 2px; text-transform: uppercase;
+  margin-bottom: 24px;
+  border: 1px solid rgba(201,169,110,.3);
+}
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(38px, 5.5vw, 68px);
+  color: var(--white);
+  line-height: 1.1;
+  max-width: 700px;
+  margin-bottom: 20px;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--gold-light);
+}
+.hero p {
+  font-size: 17px; color: rgba(255,255,255,.75);
+  max-width: 480px; margin-bottom: 36px; line-height: 1.7;
+}
+.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 32px;
+  background: var(--gold); color: var(--charcoal);
+  font-size: 14px; font-weight: 600; letter-spacing: .5px;
+  border-radius: 4px;
+  transition: background .2s, transform .15s;
+}
+.btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+.btn-outline {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 32px;
+  border: 1.5px solid rgba(255,255,255,.35); color: var(--white);
+  font-size: 14px; font-weight: 500; letter-spacing: .5px;
+  border-radius: 4px;
+  transition: border-color .2s, background .2s;
+}
+.btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,.08); }
+.hero-float {
+  position: absolute; right: 8%; top: 50%; transform: translateY(-50%);
+  width: 380px; height: 460px; border-radius: 12px;
+  overflow: hidden; z-index: 2;
+  background: linear-gradient(160deg, rgba(255,255,255,.12) 0%, rgba(201,169,110,.2) 100%);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,.15);
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 28px;
+}
+.hero-float::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    repeating-conic-gradient(rgba(255,255,255,.04) 0% 25%, transparent 0% 50%) 0 0 / 40px 40px,
+    linear-gradient(180deg, transparent 40%, rgba(40,68,168,.3));
+}
+.hero-float .float-label {
+  position: relative; z-index: 1;
+  font-family: var(--font-display); font-size: 22px;
+  color: var(--white); margin-bottom: 6px;
+}
+.hero-float .float-sub {
+  position: relative; z-index: 1;
+  font-size: 13px; color: rgba(255,255,255,.65);
+}
+/* === CATEGORIES GRID === */
+.section { padding: 80px 40px; max-width: 1440px; margin: 0 auto; }
+.section-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 8px;
+}
+.section-title {
+  font-family: var(--font-display); font-size: clamp(28px, 3.5vw, 42px);
+  color: var(--charcoal); margin-bottom: 12px;
+}
+.section-desc {
+  font-size: 15px; color: var(--gray-500); max-width: 520px; margin-bottom: 40px;
+}
+.categories-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.cat-card {
+  position: relative; border-radius: 10px; overflow: hidden;
+  aspect-ratio: 1; cursor: pointer;
+}
+.cat-card .cat-bg {
+  position: absolute; inset: 0;
+  transition: transform .5s var(--ease-out);
+}
+.cat-card:hover .cat-bg { transform: scale(1.06); }
+.cat-card .cat-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,.6));
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 24px;
+}
+.cat-card .cat-overlay h3 {
+  font-family: var(--font-display); font-size: 20px; color: var(--white);
+  margin-bottom: 4px;
+}
+.cat-card .cat-overlay p {
+  font-size: 12px; color: rgba(255,255,255,.7);
+}
+.cat-card.large { grid-column: span 2; grid-row: span 2; aspect-ratio: auto; }
+/* === PRODUCT GRID === */
+.products-header {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  margin-bottom: 32px; flex-wrap: wrap; gap: 16px;
+}
+.products-header .view-all {
+  font-size: 14px; font-weight: 500; color: var(--blue);
+  display: flex; align-items: center; gap: 6px;
+  transition: gap .2s;
+}
+.products-header .view-all:hover { gap: 10px; }
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}
+.product-card {
+  border-radius: 10px; overflow: hidden;
+  background: var(--white);
+  border: 1px solid rgba(0,0,0,.06);
+  transition: box-shadow .3s, transform .25s;
+  cursor: pointer;
+}
+.product-card:hover {
+  box-shadow: 0 8px 30px rgba(0,0,0,.1);
+  transform: translateY(-3px);
+}
+.product-card .pc-img {
+  aspect-ratio: 1; position: relative; overflow: hidden;
+}
+.product-card .pc-img .tile-visual {
+  width: 100%; height: 100%;
+  transition: transform .5s var(--ease-out);
+}
+.product-card:hover .pc-img .tile-visual { transform: scale(1.05); }
+.product-card .pc-img .pc-badge {
+  position: absolute; top: 12px; left: 12px;
+  padding: 4px 10px; border-radius: 4px;
+  background: var(--blue); color: var(--white);
+  font-size: 11px; font-weight: 600; letter-spacing: .5px;
+}
+.product-card .pc-img .pc-quick {
+  position: absolute; bottom: 12px; left: 12px; right: 12px;
+  padding: 10px;
+  background: rgba(255,255,255,.95);
+  backdrop-filter: blur(6px);
+  border-radius: 6px;
+  text-align: center;
+  font-size: 13px; font-weight: 600; color: var(--blue);
+  opacity: 0; transform: translateY(8px);
+  transition: opacity .25s, transform .25s;
+}
+.product-card:hover .pc-quick { opacity: 1; transform: translateY(0); }
+.product-card .pc-info { padding: 16px; }
+.product-card .pc-info .pc-cat {
+  font-size: 11px; font-weight: 600; letter-spacing: .8px;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 6px;
+}
+.product-card .pc-info h4 {
+  font-size: 15px; font-weight: 600; color: var(--charcoal);
+  margin-bottom: 6px; line-height: 1.3;
+}
+.product-card .pc-info .pc-spec {
+  font-size: 12px; color: var(--gray-500);
+}
+/* === WHY CHOOSE === */
+.why-section {
+  background: var(--cream);
+  padding: 80px 40px;
+}
+.why-inner {
+  max-width: 1440px; margin: 0 auto;
+}
+.why-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 24px; margin-top: 40px;
+}
+.why-card {
+  background: var(--white); border-radius: 12px;
+  padding: 32px 28px; text-align: center;
+  border: 1px solid rgba(0,0,0,.04);
+  transition: box-shadow .3s, transform .2s;
+}
+.why-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,.07); transform: translateY(-2px); }
+.why-card .why-icon {
+  width: 56px; height: 56px; margin: 0 auto 20px;
+  background: linear-gradient(135deg, var(--blue), var(--blue-light));
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px; color: var(--white);
+}
+.why-card h4 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+.why-card p { font-size: 13px; color: var(--gray-500); line-height: 1.6; }
+/* === COLLECTIONS SHOWCASE === */
+.collections-row {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 16px; margin-top: 40px;
+}
+.coll-card {
+  position: relative; border-radius: 12px; overflow: hidden;
+  aspect-ratio: 3/4; cursor: pointer;
+}
+.coll-card .coll-bg {
+  position: absolute; inset: 0;
+  transition: transform .6s var(--ease-out);
+}
+.coll-card:hover .coll-bg { transform: scale(1.05); }
+.coll-card .coll-info {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,.65));
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 24px;
+}
+.coll-card .coll-info h4 {
+  font-family: var(--font-display); font-size: 20px; color: var(--white); margin-bottom: 4px;
+}
+.coll-card .coll-info p { font-size: 12px; color: rgba(255,255,255,.7); }
+.coll-card .coll-info .coll-link {
+  margin-top: 12px; font-size: 13px; font-weight: 600;
+  color: var(--gold-light); display: flex; align-items: center; gap: 6px;
+  transition: gap .2s;
+}
+.coll-card:hover .coll-link { gap: 10px; }
+/* === CTA BANNER === */
+.cta-banner {
+  background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%);
+  padding: 80px 40px; text-align: center; position: relative; overflow: hidden;
+}
+.cta-banner::before {
+  content: ''; position: absolute; inset: 0; opacity: .05;
+  background: repeating-linear-gradient(45deg, #fff 0, #fff 1px, transparent 1px, transparent 20px);
+}
+.cta-banner h2 {
+  font-family: var(--font-display); font-size: clamp(28px, 4vw, 44px);
+  color: var(--white); position: relative; margin-bottom: 16px;
+}
+.cta-banner p {
+  font-size: 16px; color: rgba(255,255,255,.7);
+  max-width: 520px; margin: 0 auto 32px; position: relative;
+}
+.cta-banner .btn-primary { position: relative; }
+/* === FOOTER === */
+#site-footer {
+  background: var(--charcoal); color: rgba(255,255,255,.7);
+  padding: 64px 40px 32px;
+}
+.footer-inner {
+  max-width: 1440px; margin: 0 auto;
+  display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr;
+  gap: 40px;
+}
+.footer-brand .footer-logo {
+  font-family: var(--font-display); font-size: 24px;
+  color: var(--white); margin-bottom: 12px;
+}
+.footer-brand p { font-size: 14px; line-height: 1.7; margin-bottom: 20px; }
+.footer-social { display: flex; gap: 10px; }
+.footer-social a {
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; color: rgba(255,255,255,.6);
+  transition: border-color .2s, color .2s, background .2s;
+}
+.footer-social a:hover {
+  border-color: var(--gold); color: var(--gold); background: rgba(201,169,110,.1);
+}
+.footer-col h5 {
+  font-size: 12px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--white); margin-bottom: 20px;
+}
+.footer-col ul li { margin-bottom: 10px; }
+.footer-col ul li a {
+  font-size: 14px; color: rgba(255,255,255,.55);
+  transition: color .2s;
+}
+.footer-col ul li a:hover { color: var(--gold-light); }
+.footer-bottom {
+  max-width: 1440px; margin: 40px auto 0;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,.1);
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 13px; color: rgba(255,255,255,.4);
+}
+.footer-bottom a { color: rgba(255,255,255,.5); transition: color .2s; }
+.footer-bottom a:hover { color: var(--gold-light); }
+/* === SHOP PAGE === */
+.shop-header {
+  background: var(--cream); padding: 32px 0 24px;
+}
+.shop-header-inner {
+  max-width: 1440px; margin: 0 auto; padding: 0 40px;
+}
+.breadcrumbs {
+  font-size: 13px; color: var(--gray-500); margin-bottom: 12px;
+  display: flex; gap: 8px; align-items: center;
+}
+.breadcrumbs a { color: var(--gray-500); transition: color .15s; }
+.breadcrumbs a:hover { color: var(--blue); }
+.breadcrumbs .sep { font-size: 10px; }
+.shop-title { font-family: var(--font-display); font-size: 32px; }
+.shop-layout {
+  max-width: 1440px; margin: 0 auto; padding: 32px 40px;
+  display: grid; grid-template-columns: 260px 1fr; gap: 32px;
+}
+.filter-sidebar {}
+.filter-group { margin-bottom: 24px; }
+.filter-group h5 {
+  font-size: 12px; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; color: var(--charcoal); margin-bottom: 12px;
+  display: flex; align-items: center; justify-content: space-between;
+  cursor: pointer; padding-bottom: 8px;
+  border-bottom: 1px solid var(--gray-100);
+}
+.filter-group h5 .f-arrow { font-size: 10px; transition: transform .2s; }
+.filter-group.closed h5 .f-arrow { transform: rotate(-90deg); }
+.filter-group .filter-options {
+  max-height: 400px; overflow: hidden;
+  transition: max-height .3s;
+}
+.filter-group.closed .filter-options { max-height: 0; }
+.filter-check {
+  display: flex; align-items: center; gap: 10px;
+  padding: 5px 0; cursor: pointer; font-size: 14px; color: var(--gray-700);
+}
+.filter-check input { display: none; }
+.filter-check .checkmark {
+  width: 18px; height: 18px; border: 1.5px solid var(--gray-300);
+  border-radius: 4px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .15s, border-color .15s;
+  font-size: 11px; color: transparent;
+}
+.filter-check input:checked + .checkmark {
+  background: var(--blue); border-color: var(--blue); color: var(--white);
+}
+.filter-color-dot {
+  width: 22px; height: 22px; border-radius: 50%;
+  border: 2px solid transparent; cursor: pointer;
+  transition: border-color .15s, transform .15s;
+}
+.filter-color-dot:hover, .filter-color-dot.active {
+  border-color: var(--blue); transform: scale(1.15);
+}
+.color-options { display: flex; gap: 8px; flex-wrap: wrap; }
+.shop-toolbar {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 24px; flex-wrap: wrap; gap: 12px;
+}
+.active-filters { display: flex; gap: 8px; flex-wrap: wrap; }
+.active-filter {
+  display: flex; align-items: center; gap: 6px;
+  padding: 4px 12px; border-radius: 16px;
+  background: var(--sand); font-size: 12px;
+}
+.active-filter .af-remove { font-size: 14px; cursor: pointer; color: var(--gray-500); }
+.sort-select {
+  padding: 8px 14px; border: 1px solid var(--gray-300);
+  border-radius: 6px; font-size: 13px; font-family: var(--font-body);
+  background: var(--white); cursor: pointer;
+}
+/* === PRODUCT DETAIL === */
+.pd-layout {
+  max-width: 1440px; margin: 0 auto; padding: 40px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+}
+.pd-gallery { position: relative; }
+.pd-main-img {
+  width: 100%; aspect-ratio: 1; border-radius: 12px;
+  overflow: hidden; margin-bottom: 16px;
+}
+.pd-thumbs { display: flex; gap: 10px; }
+.pd-thumb {
+  width: 72px; height: 72px; border-radius: 8px; overflow: hidden;
+  border: 2px solid transparent; cursor: pointer;
+  transition: border-color .15s;
+}
+.pd-thumb.active, .pd-thumb:hover { border-color: var(--blue); }
+.pd-info {}
+.pd-breadcrumb {
+  font-size: 13px; color: var(--gray-500); margin-bottom: 16px;
+}
+.pd-info h1 {
+  font-family: var(--font-display); font-size: 32px;
+  margin-bottom: 12px; line-height: 1.2;
+}
+.pd-info .pd-cat {
+  font-size: 12px; font-weight: 600; letter-spacing: 1px;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 16px;
+}
+.pd-info .pd-desc {
+  font-size: 15px; color: var(--gray-500); line-height: 1.7;
+  margin-bottom: 28px;
+}
+.pd-specs {
+  border: 1px solid var(--gray-100); border-radius: 10px;
+  overflow: hidden; margin-bottom: 28px;
+}
+.pd-specs table { width: 100%; border-collapse: collapse; }
+.pd-specs tr { border-bottom: 1px solid var(--gray-100); }
+.pd-specs tr:last-child { border-bottom: none; }
+.pd-specs td {
+  padding: 12px 16px; font-size: 14px;
+}
+.pd-specs td:first-child {
+  font-weight: 600; color: var(--charcoal); width: 40%;
+  background: var(--cream);
+}
+.pd-specs td:last-child { color: var(--gray-700); }
+.btn-inquiry {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 16px 40px;
+  background: var(--blue); color: var(--white);
+  font-size: 15px; font-weight: 600;
+  border-radius: 6px;
+  transition: background .2s, transform .15s;
+}
+.btn-inquiry:hover { background: var(--blue-dark); transform: translateY(-1px); }
+.btn-inquiry-outline {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 16px 40px;
+  border: 1.5px solid var(--blue); color: var(--blue);
+  font-size: 15px; font-weight: 600;
+  border-radius: 6px; margin-left: 12px;
+  transition: background .2s;
+}
+.btn-inquiry-outline:hover { background: rgba(40,68,168,.05); }
+.pd-related { padding: 60px 40px; max-width: 1440px; margin: 0 auto; }
+.pd-related h3 {
+  font-family: var(--font-display); font-size: 28px; margin-bottom: 28px;
+}
+/* === ABOUT PAGE === */
+.about-hero {
+  background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%);
+  padding: 100px 40px 80px; text-align: center; position: relative;
+}
+.about-hero h1 {
+  font-family: var(--font-display); font-size: clamp(32px, 4vw, 48px);
+  color: var(--white); margin-bottom: 16px;
+}
+.about-hero p { font-size: 17px; color: rgba(255,255,255,.7); max-width: 560px; margin: 0 auto; }
+.about-content {
+  max-width: 1440px; margin: 0 auto; padding: 60px 40px;
+}
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+  align-items: center; margin-bottom: 60px;
+}
+.about-grid.reverse { direction: rtl; }
+.about-grid.reverse > * { direction: ltr; }
+.about-img {
+  width: 100%; aspect-ratio: 4/3; border-radius: 12px;
+  overflow: hidden;
+}
+.about-text h2 {
+  font-family: var(--font-display); font-size: 28px; margin-bottom: 16px;
+}
+.about-text p {
+  font-size: 15px; color: var(--gray-500); line-height: 1.8; margin-bottom: 16px;
+}
+.stats-row {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 24px; margin: 60px 0;
+}
+.stat-card {
+  text-align: center; padding: 32px 20px;
+  background: var(--cream); border-radius: 12px;
+}
+.stat-card .stat-num {
+  font-family: var(--font-display); font-size: 40px; color: var(--blue);
+  margin-bottom: 4px;
+}
+.stat-card p { font-size: 14px; color: var(--gray-500); }
+/* === CONTACT PAGE === */
+.contact-layout {
+  max-width: 1440px; margin: 0 auto; padding: 60px 40px;
+  display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px;
+}
+.contact-info h2 {
+  font-family: var(--font-display); font-size: 32px; margin-bottom: 20px;
+}
+.contact-info p { font-size: 15px; color: var(--gray-500); line-height: 1.7; margin-bottom: 28px; }
+.contact-detail {
+  display: flex; gap: 14px; align-items: flex-start; margin-bottom: 20px;
+}
+.contact-detail .cd-icon {
+  width: 44px; height: 44px; background: var(--cream); border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--blue); font-size: 18px; flex-shrink: 0;
+}
+.contact-detail h5 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+.contact-detail p { font-size: 14px; color: var(--gray-500); margin: 0; }
+.map-placeholder {
+  width: 100%; height: 200px; background: var(--sand); border-radius: 12px;
+  margin-top: 28px; display: flex; align-items: center; justify-content: center;
+  color: var(--gray-500); font-size: 14px;
+}
+.contact-form {
+  background: var(--cream); border-radius: 16px; padding: 40px;
+}
+.contact-form h3 {
+  font-family: var(--font-display); font-size: 24px; margin-bottom: 24px;
+}
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+.form-group { margin-bottom: 16px; }
+.form-group label {
+  display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px;
+}
+.form-group input, .form-group select, .form-group textarea {
+  width: 100%; padding: 12px 16px;
+  border: 1.5px solid var(--gray-300); border-radius: 8px;
+  font-size: 14px; font-family: var(--font-body);
+  transition: border-color .2s;
+  background: var(--white);
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+  outline: none; border-color: var(--blue);
+}
+.form-group textarea { resize: vertical; min-height: 120px; }
+.form-submit {
+  padding: 14px 36px; background: var(--blue); color: var(--white);
+  font-size: 15px; font-weight: 600; border-radius: 6px;
+  transition: background .2s;
+  width: 100%;
+}
+.form-submit:hover { background: var(--blue-dark); }
+/* === ANIMATIONS === */
+.page { display: none; }
+.page.active { display: block; animation: fadeUp .4s var(--ease-out); }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s var(--ease-out), transform .6s var(--ease-out); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: .1s; }
+.reveal-delay-2 { transition-delay: .2s; }
+.reveal-delay-3 { transition-delay: .3s; }
+.reveal-delay-4 { transition-delay: .35s; }
+/* === RESPONSIVE === */
+@media (max-width: 1024px) {
+  .header-nav { display: none; }
+  .hamburger { display: flex; }
+  .hero-float { display: none; }
+  .hero-content { padding: 0 30px; }
+  .categories-grid { grid-template-columns: repeat(2, 1fr); }
+  .cat-card.large { grid-column: span 2; }
+  .why-grid { grid-template-columns: repeat(2, 1fr); }
+  .collections-row { grid-template-columns: repeat(2, 1fr); }
+  .shop-layout { grid-template-columns: 1fr; }
+  .filter-sidebar {
+    display: flex; gap: 16px; flex-wrap: wrap;
+    padding-bottom: 20px; border-bottom: 1px solid var(--gray-100);
+    margin-bottom: 20px;
+  }
+  .filter-group { flex: 1; min-width: 200px; margin-bottom: 0; }
+  .pd-layout { grid-template-columns: 1fr; gap: 32px; }
+  .about-grid { grid-template-columns: 1fr; gap: 32px; }
+  .about-grid.reverse { direction: ltr; }
+  .contact-layout { grid-template-columns: 1fr; }
+  .footer-inner { grid-template-columns: repeat(2, 1fr); }
+  .stats-row { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  :root { --header-h: 56px; }
+  .header-inner { padding: 0 16px; }
+  .hero { min-height: 480px; }
+  .hero-content { padding: 0 20px; }
+  .hero p { font-size: 15px; }
+  .section { padding: 48px 20px; }
+  .categories-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .cat-card.large { grid-column: span 2; }
+  .product-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .product-card .pc-info { padding: 12px; }
+  .product-card .pc-info h4 { font-size: 13px; }
+  .why-grid { grid-template-columns: 1fr; }
+  .collections-row { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .footer-inner { grid-template-columns: 1fr; gap: 24px; }
+  .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+  .pd-layout { padding: 20px; gap: 24px; }
+  .shop-layout { padding: 20px; }
+  .contact-layout { padding: 40px 20px; gap: 40px; }
+  .contact-form { padding: 24px; }
+  .form-row { grid-template-columns: 1fr; }
+  .stats-row { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .about-content { padding: 40px 20px; }
+  .hero-btns { flex-direction: column; }
+  .hero-btns a, .hero-btns button { width: 100%; justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- Announcement Bar -->
+<div id="announcement-bar">
+  <span>Wholesale & Project Inquiries Welcome — Serving Global Clients for 5+ Years<a href="#" onclick="navigateTo('contact');return false;">Get a Quote</a></span>
+  <button class="announce-close" onclick="this.parentElement.style.display='none';document.documentElement.style.setProperty('--announce-h','0px');">&#10005;</button>
+</div>
+
+<!-- Header -->
+<header id="site-header">
+  <div class="header-inner">
+    <div class="header-logo" onclick="navigateTo('home')">
+      <div class="logo-mark">F</div>
+      <span>Flora Art Casa</span>
+    </div>
+    <nav class="header-nav">
+      <div class="nav-item" onclick="navigateTo('home')">Home</div>
+      <div class="nav-item" data-mega="shop" onmouseenter="openMega('shop')" onmouseleave="closeMegaDelay('shop')">Shop Tiles <span class="arrow">&#9660;</span></div>
+      <div class="nav-item" data-mega="collections" onmouseenter="openMega('collections')" onmouseleave="closeMegaDelay('collections')">Collections <span class="arrow">&#9660;</span></div>
+      <div class="nav-item" data-mega="projects" onmouseenter="openMega('projects')" onmouseleave="closeMegaDelay('projects')">Projects <span class="arrow">&#9660;</span></div>
+      <div class="nav-item" onclick="navigateTo('about')">About Us</div>
+      <div class="nav-item" onclick="navigateTo('contact')">Contact</div>
+    </nav>
+    <div class="header-icons">
+      <button class="icon-btn" onclick="toggleSearch()" title="Search">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+      <button class="icon-btn" title="Account">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </button>
+      <button class="icon-btn" title="Cart">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      </button>
+      <button class="hamburger" onclick="toggleMobile()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <!-- MEGA MENUS -->
+  <div class="mega-menu" id="mega-shop" onmouseenter="openMega('shop')" onmouseleave="closeMegaDelay('shop')">
+    <div class="mega-inner">
+      <div class="mega-col">
+        <h4>By Type</h4>
+        <ul>
+          <li><a href="#" onclick="navigateTo('shop');return false;">Pool Mosaic Tiles</a></li>
+          <li><a href="#" onclick="navigateTo('shop');return false;">Wall Tiles</a></li>
+          <li><a href="#" onclick="navigateTo('shop');return false;">Floor Tiles</a></li>
+          <li><a href="#" onclick="navigateTo('shop');return false;">Glass Mosaic Tiles</a></li>
+          <li><a href="#" onclick="navigateTo('shop');return false;">Kit Kat Tiles</a></li>
+          <li><a href="#" onclick="navigateTo('shop');return false;">Subway Tiles</a></li>
+          <li><a href="#" onclick="navigateTo('shop');return false;">Terracotta Tiles</a></li>
+          <li><a href="#" onclick="navigateTo('shop');return false;">Strip Tiles</a></li>
+        </ul>
+      </div>
+      <div class="mega-col">
+        <h4>By Color</h4>
+        <ul>
+          <li><a href="#" onclick="navigateTo('shop');return false;">Blue Tiles</a></li>
+          <li><a href="#" onclick="navigateTo('shop');return false;">Green Tiles</a></li>
+          <li><a href="#" onclick="navigateTo('shop');return false;">White Tiles</a></li>
+          <li><a href="#" onclick="navigateTo('shop');return false;">Black Tiles</a></li>
+          <li><a href="#" onclick="navigateTo('shop');return false;">Beige / Bone Tiles</a></li>
+          <li><a href="#" onclick="navigateTo('shop');return false;">Mixed Color Tiles</a></li>
+        </ul>
+      </div>
+      <div class="mega-col">
+        <h4>By Material</h4>
+        <ul>
+          <li><a href="#" onclick="navigateTo('shop');return false;">Ceramic</a></li>
+          <li><a href="#" onclick="navigateTo('shop');return false;">Porcelain</a></li>
+          <li><a href="#" onclick="navigateTo('shop');return false;">Glass</a></li>
+          <li><a href="#" onclick="navigateTo('shop');return false;">Natural Stone</a></li>
+          <li><a href="#" onclick="navigateTo('shop');return false;">Terracotta</a></li>
+        </ul>
+      </div>
+      <div class="mega-col">
+        <h4>By Application</h4>
+        <ul>
+          <li><a href="#" onclick="navigateTo('shop');return false;">Swimming Pool</a></li>
+          <li><a href="#" onclick="navigateTo('shop');return false;">Bathroom</a></li>
+          <li><a href="#" onclick="navigateTo('shop');return false;">Kitchen Backsplash</a></li>
+          <li><a href="#" onclick="navigateTo('shop');return false;">Outdoor</a></li>
+          <li><a href="#" onclick="navigateTo('shop');return false;">Feature Wall</a></li>
+          <li><a href="#" onclick="navigateTo('shop');return false;">Commercial Projects</a></li>
+        </ul>
+      </div>
+      <div class="mega-featured">
+        <div class="mega-featured-img">
+          <div class="overlay-text">
+            <h5>New Arrivals</h5>
+            <p>Discover our latest mosaic collections</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mega-menu" id="mega-collections" onmouseenter="openMega('collections')" onmouseleave="closeMegaDelay('collections')">
+    <div class="mega-inner">
+      <div class="mega-col">
+        <h4>Featured Collections</h4>
+        <ul>
+          <li><a href="#" onclick="navigateTo('shop');return false;">Breeze Collection</a></li>
+          <li><a href="#" onclick="navigateTo('shop');return false;">Bali Stone</a></li>
+          <li><a href="#" onclick="navigateTo('shop');return false;">The Quartz</a></li>
+          <li><a href="#" onclick="navigateTo('shop');return false;">The Fantasy</a></li>
+        </ul>
+      </div>
+      <div class="mega-col">
+        <h4>Signature Series</h4>
+        <ul>
+          <li><a href="#" onclick="navigateTo('shop');return false;">Oxidized Charm</a></li>
+          <li><a href="#" onclick="navigateTo('shop');return false;">Vintage Series</a></li>
+          <li><a href="#" onclick="navigateTo('shop');return false;">Ripple Series</a></li>
+          <li><a href="#" onclick="navigateTo('shop');return false;">Lune Series</a></li>
+        </ul>
+      </div>
+      <div class="mega-featured" style="flex:0 0 320px;">
+        <div class="mega-featured-img" style="background:linear-gradient(160deg, #1a5c3a 0%, #2d8f5e 50%, #C9A96E 100%);">
+          <div class="overlay-text">
+            <h5>Breeze Collection</h5>
+            <p>Discover the Art of Geometry</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mega-menu" id="mega-projects" onmouseenter="openMega('projects')" onmouseleave="closeMegaDelay('projects')">
+    <div class="mega-inner">
+      <div class="mega-col">
+        <h4>Project Gallery</h4>
+        <ul>
+          <li><a href="#" onclick="navigateTo('shop');return false;">All Projects</a></li>
+          <li><a href="#" onclick="navigateTo('shop');return false;">Residential</a></li>
+          <li><a href="#" onclick="navigateTo('shop');return false;">Commercial</a></li>
+          <li><a href="#" onclick="navigateTo('shop');return false;">Hospitality</a></li>
+        </ul>
+      </div>
+      <div class="mega-featured" style="flex:0 0 320px;">
+        <div class="mega-featured-img" style="background:linear-gradient(160deg,#8B4513 0%,#D2691E 50%,#C9A96E 100%);">
+          <div class="overlay-text">
+            <h5>Project Showcase</h5>
+            <p>See our tiles in real-world applications</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Search Overlay -->
+<div id="search-overlay">
+  <button class="search-close-btn" onclick="toggleSearch()">&#10005;</button>
+  <div class="search-inner">
+    <div class="search-box">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" placeholder="Search tiles, collections, colors..." id="search-input" oninput="handleSearch(this.value)">
+    </div>
+    <div class="search-popular">
+      <h6>Popular Searches</h6>
+      <div class="tags">
+        <a href="#" onclick="searchFor('Pool Mosaic');return false;">Pool Mosaic</a>
+        <a href="#" onclick="searchFor('Blue Tiles');return false;">Blue Tiles</a>
+        <a href="#" onclick="searchFor('Kit Kat');return false;">Kit Kat</a>
+        <a href="#" onclick="searchFor('Terracotta');return false;">Terracotta</a>
+        <a href="#" onclick="searchFor('Glass Mosaic');return false;">Glass Mosaic</a>
+        <a href="#" onclick="searchFor('Subway');return false;">Subway</a>
+      </div>
+    </div>
+    <div class="search-results" id="search-results"></div>
+  </div>
+</div>
+<div id="search-backdrop" onclick="toggleSearch()"></div>
+
+<!-- Mobile Menu -->
+<div id="mobile-menu">
+  <div class="mobile-menu-header">
+    <div class="header-logo" onclick="navigateTo('home');toggleMobile();">
+      <div class="logo-mark">F</div>
+      <span>Flora Art Casa</span>
+    </div>
+    <button class="mobile-menu-close" onclick="toggleMobile()">&#10005;</button>
+  </div>
+  <div class="mobile-nav-list">
+    <div class="mobile-nav-item"><div class="mobile-nav-link" onclick="navigateTo('home');toggleMobile();">Home</div></div>
+    <div class="mobile-nav-item">
+      <div class="mobile-nav-link" onclick="this.parentElement.classList.toggle('open')">Shop Tiles <span class="m-arrow">&#9660;</span></div>
+      <div class="mobile-sub-menu">
+        <div class="sub-group"><h5>By Type</h5>
+          <a href="#" onclick="navigateTo('shop');toggleMobile();return false;">Pool Mosaic</a>
+          <a href="#" onclick="navigateTo('shop');toggleMobile();return false;">Wall Tiles</a>
+          <a href="#" onclick="navigateTo('shop');toggleMobile();return false;">Floor Tiles</a>
+          <a href="#" onclick="navigateTo('shop');toggleMobile();return false;">Glass Mosaic</a>
+          <a href="#" onclick="navigateTo('shop');toggleMobile();return false;">Kit Kat Tiles</a>
+          <a href="#" onclick="navigateTo('shop');toggleMobile();return false;">Subway Tiles</a>
+          <a href="#" onclick="navigateTo('shop');toggleMobile();return false;">Terracotta</a>
+        </div>
+        <div class="sub-group"><h5>By Color</h5>
+          <a href="#" onclick="navigateTo('shop');toggleMobile();return false;">Blue</a>
+          <a href="#" onclick="navigateTo('shop');toggleMobile();return false;">Green</a>
+          <a href="#" onclick="navigateTo('shop');toggleMobile();return false;">White</a>
+          <a href="#" onclick="navigateTo('shop');toggleMobile();return false;">Black</a>
+          <a href="#" onclick="navigateTo('shop');toggleMobile();return false;">Beige</a>
+        </div>
+        <div class="sub-group"><h5>By Application</h5>
+          <a href="#" onclick="navigateTo('shop');toggleMobile();return false;">Swimming Pool</a>
+          <a href="#" onclick="navigateTo('shop');toggleMobile();return false;">Bathroom</a>
+          <a href="#" onclick="navigateTo('shop');toggleMobile();return false;">Kitchen</a>
+          <a href="#" onclick="navigateTo('shop');toggleMobile();return false;">Outdoor</a>
+        </div>
+      </div>
+    </div>
+    <div class="mobile-nav-item">
+      <div class="mobile-nav-link" onclick="this.parentElement.classList.toggle('open')">Collections <span class="m-arrow">&#9660;</span></div>
+      <div class="mobile-sub-menu">
+        <div class="sub-group"><h5>All Collections</h5>
+          <a href="#" onclick="navigateTo('shop');toggleMobile();return false;">Breeze</a>
+          <a href="#" onclick="navigateTo('shop');toggleMobile();return false;">Bali Stone</a>
+          <a href="#" onclick="navigateTo('shop');toggleMobile();return false;">The Quartz</a>
+          <a href="#" onclick="navigateTo('shop');toggleMobile();return false;">The Fantasy</a>
+          <a href="#" onclick="navigateTo('shop');toggleMobile();return false;">Oxidized Charm</a>
+          <a href="#" onclick="navigateTo('shop');toggleMobile();return false;">Vintage Series</a>
+          <a href="#" onclick="navigateTo('shop');toggleMobile();return false;">Ripple Series</a>
+          <a href="#" onclick="navigateTo('shop');toggleMobile();return false;">Lune Series</a>
+        </div>
+      </div>
+    </div>
+    <div class="mobile-nav-item">
+      <div class="mobile-nav-link" onclick="this.parentElement.classList.toggle('open')">Projects <span class="m-arrow">&#9660;</span></div>
+      <div class="mobile-sub-menu">
+        <div class="sub-group">
+          <a href="#" onclick="navigateTo('shop');toggleMobile();return false;">All Projects</a>
+          <a href="#" onclick="navigateTo('shop');toggleMobile();return false;">Residential</a>
+          <a href="#" onclick="navigateTo('shop');toggleMobile();return false;">Commercial</a>
+          <a href="#" onclick="navigateTo('shop');toggleMobile();return false;">Hospitality</a>
+        </div>
+      </div>
+    </div>
+    <div class="mobile-nav-item"><div class="mobile-nav-link" onclick="navigateTo('about');toggleMobile();">About Us</div></div>
+    <div class="mobile-nav-item"><div class="mobile-nav-link" onclick="navigateTo('contact');toggleMobile();">Contact</div></div>
+  </div>
+</div>
+
+<!-- Page Container -->
+<main id="page-container">
+  <div id="page-home" class="page active">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-pattern"></div>
+      <div class="hero-content">
+        <div class="hero-badge">Anti-Slipped Mosaic Tile Specialists</div>
+        <h1>Flourishing Your Space with <em>Artful</em> Tiles</h1>
+        <p>Premium mosaic and art tiles crafted in Foshan — where centuries of ceramic tradition meets modern design innovation.</p>
+        <div class="hero-btns">
+          <a class="btn-primary" onclick="navigateTo('shop')">Explore Our Tiles &rarr;</a>
+          <a class="btn-outline" onclick="navigateTo('contact')">Request a Quote</a>
+        </div>
+      </div>
+      <div class="hero-float">
+        <div class="float-label">Where Water Becomes Your Canvas</div>
+        <div class="float-sub">R10 Safety Standard · Anti-Slip · Pool Ready</div>
+      </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="section">
+      <div class="section-label reveal">Shop By Category</div>
+      <div class="section-title reveal">Find Your Perfect Tile</div>
+      <div class="section-desc reveal">Browse our curated collections organized by type, application, and style to find exactly what your project needs.</div>
+      <div class="categories-grid">
+        <div class="cat-card large reveal" onclick="navigateTo('shop')">
+          <div class="cat-bg" style="background:linear-gradient(145deg,#1a3a6b,#2d6ba4,#4a9fd4);"></div>
+          <div class="cat-overlay"><h3>Pool Mosaic Tiles</h3><p>Anti-slip · R10 rated · Premium finishes</p></div>
+        </div>
+        <div class="cat-card reveal reveal-delay-1" onclick="navigateTo('shop')">
+          <div class="cat-bg" style="background:linear-gradient(145deg,#2d7d4f,#4db377,#8fd4a8);"></div>
+          <div class="cat-overlay"><h3>Glass Mosaic</h3><p>12 colors available</p></div>
+        </div>
+        <div class="cat-card reveal reveal-delay-2" onclick="navigateTo('shop')">
+          <div class="cat-bg" style="background:linear-gradient(145deg,#8B4513,#CD853F,#DEB887);"></div>
+          <div class="cat-overlay"><h3>Terracotta</h3><p>Rustic elegance</p></div>
+        </div>
+        <div class="cat-card reveal reveal-delay-1" onclick="navigateTo('shop')">
+          <div class="cat-bg" style="background:linear-gradient(145deg,#e8e0d4,#f5f0ea,#d4ccc0);"></div>
+          <div class="cat-overlay"><h3>Kit Kat Tiles</h3><p>Finger tile designs</p></div>
+        </div>
+        <div class="cat-card reveal reveal-delay-2" onclick="navigateTo('shop')">
+          <div class="cat-bg" style="background:linear-gradient(145deg,#1a1a2e,#2a2a4e,#444470);"></div>
+          <div class="cat-overlay"><h3>Subway Tiles</h3><p>Classic & modern</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- New Arrivals Products -->
+    <section class="section" style="background:var(--cream);padding-left:0;padding-right:0;">
+      <div style="max-width:1440px;margin:0 auto;padding:0 40px;">
+        <div class="products-header">
+          <div>
+            <div class="section-label reveal">New Arrivals</div>
+            <div class="section-title reveal">Latest Products</div>
+          </div>
+          <a class="view-all reveal" href="#" onclick="navigateTo('shop');return false;">View All Products &rarr;</a>
+        </div>
+        <div class="product-grid" id="home-products"></div>
+      </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="why-section">
+      <div class="why-inner">
+        <div style="text-align:center;">
+          <div class="section-label reveal">Why Flora Art Casa</div>
+          <div class="section-title reveal">Trusted Worldwide</div>
+        </div>
+        <div class="why-grid">
+          <div class="why-card reveal">
+            <div class="why-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h4>5+ Years of Excellence</h4>
+            <p>Half a decade of crafting premium mosaic and art tiles with unwavering quality standards.</p>
+          </div>
+          <div class="why-card reveal reveal-delay-1">
+            <div class="why-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+            </div>
+            <h4>150+ Global Clients</h4>
+            <p>Serving wholesalers, importers, and large-scale projects across continents.</p>
+          </div>
+          <div class="why-card reveal reveal-delay-2">
+            <div class="why-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </div>
+            <h4>R10 Safety Standard</h4>
+            <p>Anti-slip pool tiles that meet international safety certifications for peace of mind.</p>
+          </div>
+          <div class="why-card reveal reveal-delay-3">
+            <div class="why-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <h4>Custom Design</h4>
+            <p>Bespoke mosaic solutions tailored to your unique vision and project requirements.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Collections Showcase -->
+    <section class="section">
+      <div class="section-label reveal">Signature Collections</div>
+      <div class="section-title reveal">Curated for Inspiration</div>
+      <div class="section-desc reveal">Each collection tells a unique story through color, texture, and pattern.</div>
+      <div class="collections-row">
+        <div class="coll-card reveal" onclick="navigateTo('shop')">
+          <div class="coll-bg" style="background:linear-gradient(160deg,#2844A8 0%,#5a7dd4 50%,#a8c4e8 100%);"></div>
+          <div class="coll-info"><h4>Breeze Collection</h4><p>Geometric art patterns</p><span class="coll-link">Explore &rarr;</span></div>
+        </div>
+        <div class="coll-card reveal reveal-delay-1" onclick="navigateTo('shop')">
+          <div class="coll-bg" style="background:linear-gradient(160deg,#6b4423 0%,#a67c52 50%,#d4b896 100%);"></div>
+          <div class="coll-info"><h4>Bali Stone</h4><p>Natural stone inspiration</p><span class="coll-link">Explore &rarr;</span></div>
+        </div>
+        <div class="coll-card reveal reveal-delay-2" onclick="navigateTo('shop')">
+          <div class="coll-bg" style="background:linear-gradient(160deg,#e8e0d4 0%,#f5f0ea 50%,#c9c0b4 100%);"></div>
+          <div class="coll-info"><h4>The Quartz</h4><p>Crystal-clear elegance</p><span class="coll-link">Explore &rarr;</span></div>
+        </div>
+        <div class="coll-card reveal reveal-delay-3" onclick="navigateTo('shop')">
+          <div class="coll-bg" style="background:linear-gradient(160deg,#4a2c17 0%,#8b5e3c 50%,#c9a96e 100%);"></div>
+          <div class="coll-info"><h4>Oxidized Charm</h4><p>Warm metallic finishes</p><span class="coll-link">Explore &rarr;</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section class="cta-banner">
+      <h2>Ready to Transform Your Space?</h2>
+      <p>Whether you're a wholesaler, importer, or working on a large-scale project — we're here to bring your vision to life.</p>
+      <a class="btn-primary" onclick="navigateTo('contact')">Get in Touch &rarr;</a>
+    </section>
+  </div>
+  <div id="page-shop" class="page">
+    <div class="shop-header">
+      <div class="shop-header-inner">
+        <div class="breadcrumbs"><a href="#" onclick="navigateTo('home');return false;">Home</a><span class="sep">&#8250;</span><span>All Tiles</span></div>
+        <h1 class="shop-title">All Tiles</h1>
+      </div>
+    </div>
+    <div class="shop-layout">
+      <aside class="filter-sidebar">
+        <div class="filter-group">
+          <h5 onclick="this.parentElement.classList.toggle('closed')">Type <span class="f-arrow">&#9660;</span></h5>
+          <div class="filter-options">
+            <label class="filter-check"><input type="checkbox" onchange="applyFilter()"><span class="checkmark">&#10003;</span>Pool Mosaic</label>
+            <label class="filter-check"><input type="checkbox" onchange="applyFilter()"><span class="checkmark">&#10003;</span>Wall Tile</label>
+            <label class="filter-check"><input type="checkbox" onchange="applyFilter()"><span class="checkmark">&#10003;</span>Floor Tile</label>
+            <label class="filter-check"><input type="checkbox" onchange="applyFilter()"><span class="checkmark">&#10003;</span>Glass Mosaic</label>
+            <label class="filter-check"><input type="checkbox" onchange="applyFilter()"><span class="checkmark">&#10003;</span>Kit Kat</label>
+            <label class="filter-check"><input type="checkbox" onchange="applyFilter()"><span class="checkmark">&#10003;</span>Subway</label>
+            <label class="filter-check"><input type="checkbox" onchange="applyFilter()"><span class="checkmark">&#10003;</span>Terracotta</label>
+            <label class="filter-check"><input type="checkbox" onchange="applyFilter()"><span class="checkmark">&#10003;</span>Strip Tile</label>
+          </div>
+        </div>
+        <div class="filter-group">
+          <h5 onclick="this.parentElement.classList.toggle('closed')">Color <span class="f-arrow">&#9660;</span></h5>
+          <div class="filter-options">
+            <div class="color-options">
+              <div class="filter-color-dot" style="background:#2a5da8;" title="Blue" onclick="this.classList.toggle('active');applyFilter();"></div>
+              <div class="filter-color-dot" style="background:#2d7d4f;" title="Green" onclick="this.classList.toggle('active');applyFilter();"></div>
+              <div class="filter-color-dot" style="background:#f0ebe3;" title="White" onclick="this.classList.toggle('active');applyFilter();"></div>
+              <div class="filter-color-dot" style="background:#1a1a2e;" title="Black" onclick="this.classList.toggle('active');applyFilter();"></div>
+              <div class="filter-color-dot" style="background:#d4b896;" title="Beige" onclick="this.classList.toggle('active');applyFilter();"></div>
+              <div class="filter-color-dot" style="background:#8b5e3c;" title="Brown" onclick="this.classList.toggle('active');applyFilter();"></div>
+            </div>
+          </div>
+        </div>
+        <div class="filter-group">
+          <h5 onclick="this.parentElement.classList.toggle('closed')">Material <span class="f-arrow">&#9660;</span></h5>
+          <div class="filter-options">
+            <label class="filter-check"><input type="checkbox" onchange="applyFilter()"><span class="checkmark">&#10003;</span>Ceramic</label>
+            <label class="filter-check"><input type="checkbox" onchange="applyFilter()"><span class="checkmark">&#10003;</span>Porcelain</label>
+            <label class="filter-check"><input type="checkbox" onchange="applyFilter()"><span class="checkmark">&#10003;</span>Glass</label>
+            <label class="filter-check"><input type="checkbox" onchange="applyFilter()"><span class="checkmark">&#10003;</span>Natural Stone</label>
+            <label class="filter-check"><input type="checkbox" onchange="applyFilter()"><span class="checkmark">&#10003;</span>Terracotta</label>
+          </div>
+        </div>
+        <div class="filter-group">
+          <h5 onclick="this.parentElement.classList.toggle('closed')">Application <span class="f-arrow">&#9660;</span></h5>
+          <div class="filter-options">
+            <label class="filter-check"><input type="checkbox" onchange="applyFilter()"><span class="checkmark">&#10003;</span>Swimming Pool</label>
+            <label class="filter-check"><input type="checkbox" onchange="applyFilter()"><span class="checkmark">&#10003;</span>Bathroom</label>
+            <label class="filter-check"><input type="checkbox" onchange="applyFilter()"><span class="checkmark">&#10003;</span>Kitchen</label>
+            <label class="filter-check"><input type="checkbox" onchange="applyFilter()"><span class="checkmark">&#10003;</span>Outdoor</label>
+            <label class="filter-check"><input type="checkbox" onchange="applyFilter()"><span class="checkmark">&#10003;</span>Feature Wall</label>
+            <label class="filter-check"><input type="checkbox" onchange="applyFilter()"><span class="checkmark">&#10003;</span>Commercial</label>
+          </div>
+        </div>
+      </aside>
+      <div class="shop-main">
+        <div class="shop-toolbar">
+          <div class="active-filters" id="active-filters"></div>
+          <select class="sort-select">
+            <option>Sort by: Featured</option>
+            <option>Name: A to Z</option>
+            <option>Name: Z to A</option>
+            <option>Newest First</option>
+          </select>
+        </div>
+        <div class="product-grid" id="shop-products"></div>
+      </div>
+    </div>
+  </div>
+  <div id="page-product" class="page">
+    <div class="pd-layout">
+      <div class="pd-gallery">
+        <div class="pd-main-img" id="pd-main-img"></div>
+        <div class="pd-thumbs" id="pd-thumbs"></div>
+      </div>
+      <div class="pd-info">
+        <div class="pd-breadcrumb">
+          <a href="#" onclick="navigateTo('home');return false;">Home</a> &rsaquo;
+          <a href="#" onclick="navigateTo('shop');return false;">All Tiles</a> &rsaquo;
+          <span id="pd-breadcrumb-name">Product</span>
+        </div>
+        <div class="pd-cat" id="pd-cat">Pool Mosaic</div>
+        <h1 id="pd-title">Product Name</h1>
+        <p class="pd-desc" id="pd-desc">Product description.</p>
+        <div class="pd-specs">
+          <table>
+            <tr><td>Chip Size</td><td id="pd-chip">97×97×8mm</td></tr>
+            <tr><td>Sheet Size</td><td id="pd-sheet">300×300mm</td></tr>
+            <tr><td>Material</td><td id="pd-material">Ceramic</td></tr>
+            <tr><td>Finish</td><td id="pd-finish">Matte</td></tr>
+            <tr><td>Application</td><td id="pd-app">Swimming Pool, Bathroom</td></tr>
+            <tr><td>Anti-Slip Rating</td><td id="pd-slip">R10</td></tr>
+          </table>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;">
+          <button class="btn-inquiry" onclick="navigateTo('contact')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Send Inquiry
+          </button>
+          <button class="btn-inquiry-outline">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+            Download Spec Sheet
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="pd-related">
+      <h3>You May Also Like</h3>
+      <div class="product-grid" id="pd-related-grid"></div>
+    </div>
+  </div>
+  <div id="page-about" class="page">
+    <div class="about-hero">
+      <h1>About Flora Art Casa</h1>
+      <p>Where centuries of Foshan ceramic tradition meets contemporary design excellence</p>
+    </div>
+    <div class="about-content">
+      <div class="about-grid">
+        <div class="about-img" style="background:linear-gradient(135deg,#2844A8,#5a7dd4,#a8c4e8);"></div>
+        <div class="about-text">
+          <h2>Our Story</h2>
+          <p>Flora Art Casa, formally known as Foshan Mosaic & Art Tile Co., was founded in the heart of China's ceramics capital — Foshan. For over five years, we have been dedicated to the development, production, and sales of a wide range of mosaics and art tiles.</p>
+          <p>Our mission is to bring creativity and quality into every space through meticulously crafted products. We serve wholesalers, importers, and large-scale projects around the world, delivering tiles that transform ordinary spaces into extraordinary experiences.</p>
+        </div>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat-card reveal"><div class="stat-num">5+</div><p>Years of Excellence</p></div>
+        <div class="stat-card reveal reveal-delay-1"><div class="stat-num">150+</div><p>Global Clients</p></div>
+        <div class="stat-card reveal reveal-delay-2"><div class="stat-num">500+</div><p>Tile Designs</p></div>
+        <div class="stat-card reveal reveal-delay-3"><div class="stat-num">30+</div><p>Countries Served</p></div>
+      </div>
+
+      <div class="about-grid reverse">
+        <div class="about-img" style="background:linear-gradient(135deg,#6b4423,#a67c52,#d4b896);"></div>
+        <div class="about-text">
+          <h2>Our Vision</h2>
+          <p>To be the leading provider of mosaic and art tiles worldwide, recognized for our innovation, craftsmanship, and commitment to sustainability.</p>
+          <p>Every tile we produce reflects our core values: innovation in design, precision in manufacturing, and integrity in every business relationship. Our state-of-the-art facility in Foshan combines advanced technology with artisan craftsmanship.</p>
+        </div>
+      </div>
+
+      <div class="about-grid" style="margin-top:60px;">
+        <div class="about-img" style="background:linear-gradient(135deg,#1a5c3a,#2d8f5e,#8fd4a8);"></div>
+        <div class="about-text">
+          <h2>Factory Capabilities</h2>
+          <p>Our modern production facility spans thousands of square meters, equipped with cutting-edge machinery for ceramic, porcelain, glass, and natural stone tile manufacturing.</p>
+          <p>We maintain strict quality control at every stage — from raw material selection to final packaging. Our R10-rated anti-slip pool tiles meet the highest international safety standards, giving architects and designers confidence in specifying our products for any project.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="page-contact" class="page">
+    <div class="about-hero">
+      <h1>Contact Us</h1>
+      <p>Reach out for quotes, samples, or project consultations</p>
+    </div>
+    <div class="contact-layout">
+      <div class="contact-info">
+        <h2>Let's Talk Tiles</h2>
+        <p>Whether you're a wholesaler looking for a reliable supply partner, an importer seeking unique tile designs, or an architect specifying materials for your next project — we'd love to hear from you.</p>
+        <div class="contact-detail">
+          <div class="cd-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div><h5>Email</h5><p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b4d6dbd1cdf4d2d8dbc6d5d5c6c0d7d5c7d59ad7dbd9">[email&#160;protected]</a></p></div>
+        </div>
+        <div class="contact-detail">
+          <div class="cd-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div><h5>Location</h5><p>Foshan, Guangdong Province, China</p></div>
+        </div>
+        <div class="contact-detail">
+          <div class="cd-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+          </div>
+          <div><h5>Website</h5><p>www.floraartcasa.com</p></div>
+        </div>
+        <div class="map-placeholder">
+          <span>&#128205; Foshan, Guangdong Province, China</span>
+        </div>
+      </div>
+      <form class="contact-form" name="inquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thank-you">
+        <input type="hidden" name="form-name" value="inquiry">
+        <p style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
+        <h3>Send Us a Message</h3>
+        <div class="form-row">
+          <div class="form-group"><label>First Name *</label><input type="text" name="first-name" placeholder="Your first name" required></div>
+          <div class="form-group"><label>Last Name *</label><input type="text" name="last-name" placeholder="Your last name" required></div>
+        </div>
+        <div class="form-group"><label>Email *</label><input type="email" name="email" placeholder="your@email.com" required></div>
+        <div class="form-group"><label>Company</label><input type="text" name="company" placeholder="Company name (optional)"></div>
+        <div class="form-group">
+          <label>Interested In</label>
+          <select name="interest">
+            <option>Select a category...</option>
+            <option>Pool Mosaic Tiles</option>
+            <option>Wall Tiles</option>
+            <option>Floor Tiles</option>
+            <option>Glass Mosaic Tiles</option>
+            <option>Kit Kat Tiles</option>
+            <option>Terracotta Tiles</option>
+            <option>Custom Design</option>
+            <option>Wholesale Partnership</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Message *</label><textarea name="message" placeholder="Tell us about your project, quantities needed, or any questions..." required></textarea></div>
+        <button class="form-submit" type="submit">Send Message</button>
+      </form>
+    </div>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer id="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">Flora Art Casa</div>
+      <p>Foshan Mosaic & Art Tile Co. — Crafting premium tiles from the heart of China's ceramics capital since 2019.</p>
+      <div class="footer-social">
+        <a href="#" title="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="#" title="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+        <a href="#" title="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.43z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Products</h5>
+      <ul>
+        <li><a href="#" onclick="navigateTo('shop');return false;">Pool Mosaic Tiles</a></li>
+        <li><a href="#" onclick="navigateTo('shop');return false;">Wall Tiles</a></li>
+        <li><a href="#" onclick="navigateTo('shop');return false;">Floor Tiles</a></li>
+        <li><a href="#" onclick="navigateTo('shop');return false;">Glass Mosaic</a></li>
+        <li><a href="#" onclick="navigateTo('shop');return false;">Kit Kat Tiles</a></li>
+        <li><a href="#" onclick="navigateTo('shop');return false;">Terracotta</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Collections</h5>
+      <ul>
+        <li><a href="#" onclick="navigateTo('shop');return false;">Breeze</a></li>
+        <li><a href="#" onclick="navigateTo('shop');return false;">Bali Stone</a></li>
+        <li><a href="#" onclick="navigateTo('shop');return false;">The Quartz</a></li>
+        <li><a href="#" onclick="navigateTo('shop');return false;">The Fantasy</a></li>
+        <li><a href="#" onclick="navigateTo('shop');return false;">Oxidized Charm</a></li>
+        <li><a href="#" onclick="navigateTo('shop');return false;">Vintage Series</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="#" onclick="navigateTo('about');return false;">About Us</a></li>
+        <li><a href="#" onclick="navigateTo('shop');return false;">Projects</a></li>
+        <li><a href="#" onclick="navigateTo('contact');return false;">Contact</a></li>
+        <li><a href="#">Sustainability</a></li>
+        <li><a href="#">Careers</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Support</h5>
+      <ul>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Shipping Info</a></li>
+        <li><a href="#">Sample Request</a></li>
+        <li><a href="#">Technical Docs</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2024 Flora Art Casa. All rights reserved.</span>
+    <span>Foshan Mosaic & Art Tile Co. &middot; Foshan, China</span>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// === PRODUCT DATA (loaded from /data/products.json for CMS editing) ===
+let products = [];
+async function loadProducts() {
+  try {
+    const res = await fetch('/data/products.json');
+    const data = await res.json();
+    products = data.products || data;
+    // Re-render current page products
+    renderCards('home-products', products, 8);
+    const shopGrid = document.getElementById('shop-products');
+    if (shopGrid && shopGrid.children.length > 0) renderCards('shop-products', products);
+  } catch(e) {
+    console.log('Using fallback product data');
+  }
+}
+// Fallback inline data (used if fetch fails, e.g. local file:// access)
+products = [
+  { id:1, name:'P4 Anti-slipped Pool Mosaic Tile', cat:'Pool Mosaic', color:'gray', material:'Ceramic', app:'Swimming Pool', chip:'97×97×8mm', sheet:'300×300mm', finish:'Matte Anti-Slip', slip:'R10', desc:'Natural stone design with slate patterns. R10 rated anti-slip surface perfect for pool surrounds and wet areas.', badge:'Best Seller',
+    grad:'linear-gradient(145deg,#7a8b9a,#9aabb8,#b8c8d4,#8a9baa)' },
+  { id:2, name:'Amazon Blue P4 Anti-slipped Pool Mosaic Tile', cat:'Pool Mosaic', color:'blue', material:'Ceramic', app:'Swimming Pool', chip:'97×97×8mm', sheet:'300×300mm', finish:'Matte Anti-Slip', slip:'R10', desc:'Ocean-inspired deep blue anti-slip mosaic tile. Transform your pool into a stunning aquatic masterpiece.', badge:'New',
+    grad:'linear-gradient(145deg,#1a4a7a,#2a6a9a,#3a8aba,#2a5a8a)' },
+  { id:3, name:'Glossy Strip Grass Green Tile', cat:'Strip Tile', color:'green', material:'Ceramic', app:'Feature Wall', chip:'27×200mm', sheet:'202×329mm', finish:'Glossy', slip:'-', desc:'Vibrant grass-green strip tile with a glossy finish. Perfect for creating eye-catching accent walls and backsplashes.',
+    grad:'linear-gradient(145deg,#2d7d4f,#3d9d6f,#5dbd8f,#3d8d5f)' },
+  { id:4, name:'Lune Panda White Kit Kat Tile', cat:'Kit Kat', color:'white', material:'Porcelain', app:'Bathroom', chip:'22×145×8mm', sheet:'296×300mm', finish:'Matte', slip:'-', desc:'Elegant panda white kit kat finger tiles with marble veining. A sophisticated choice for modern bathrooms.',
+    grad:'linear-gradient(145deg,#e8e0d4,#f5f0ea,#ede5d9,#f0eae0)' },
+  { id:5, name:'Ripple Emerald Green Pool Mosaic Tile', cat:'Pool Mosaic', color:'green', material:'Glass', app:'Swimming Pool', chip:'48×48×6mm', sheet:'306×306mm', finish:'Glossy Textured', slip:'R10', desc:'Textured wave-pattern mosaic in rich emerald green. The rippled surface creates mesmerizing light effects underwater.', badge:'Popular',
+    grad:'linear-gradient(145deg,#0a5c3a,#1a7c5a,#2a9c6a,#1a6c4a)' },
+  { id:6, name:'Vintage Glass Tile', cat:'Glass Mosaic', color:'blue', material:'Glass', app:'Feature Wall', chip:'150×150mm', sheet:'150×150mm', finish:'Glossy', slip:'-', desc:'Retro-aesthetic glossy glass tiles with a vintage charm. Each tile has subtle color variations for authentic character.',
+    grad:'linear-gradient(145deg,#4a6a8a,#6a8aaa,#8aaaca,#5a7a9a)' },
+  { id:7, name:'Terracotta Rustic Floor Tile', cat:'Terracotta', color:'brown', material:'Terracotta', app:'Outdoor', chip:'200×200mm', sheet:'200×200mm', finish:'Matte Natural', slip:'R10', desc:'Warm earth-toned terracotta tiles with an authentic rustic finish. Ideal for outdoor patios and Mediterranean-inspired spaces.',
+    grad:'linear-gradient(145deg,#8B4513,#A0522D,#CD853F,#8B5E3C)' },
+  { id:8, name:'Breeze Geometric Mosaic Tile', cat:'Wall Tile', color:'blue', material:'Ceramic', app:'Feature Wall', chip:'Various', sheet:'300×300mm', finish:'Matte', slip:'-', desc:'Art deco-inspired geometric mosaic patterns from our signature Breeze collection. Each sheet is a work of art.', badge:'Collection',
+    grad:'linear-gradient(145deg,#2844A8,#3a5acc,#5a7ae8,#3a5acc)' },
+  { id:9, name:'Ocean Wave Blue Mosaic', cat:'Pool Mosaic', color:'blue', material:'Glass', app:'Swimming Pool', chip:'48×48×6mm', sheet:'306×306mm', finish:'Glossy', slip:'R10', desc:'Flowing wave patterns in ocean blue tones. The glass surface catches light beautifully both above and below the waterline.',
+    grad:'linear-gradient(145deg,#0a3a6a,#1a5a8a,#2a7aaa,#1a4a7a)' },
+  { id:10, name:'Marble White Hexagon Mosaic', cat:'Wall Tile', color:'white', material:'Natural Stone', app:'Bathroom', chip:'48×48mm', sheet:'300×260mm', finish:'Polished', slip:'-', desc:'Classic hexagonal mosaic in natural marble white. Timeless elegance for bathroom floors and accent walls.',
+    grad:'linear-gradient(145deg,#f0ebe3,#e8e0d4,#f5f0ea,#ede5d9)' },
+  { id:11, name:'Midnight Black Glossy Subway', cat:'Subway', color:'black', material:'Ceramic', app:'Kitchen Backsplash', chip:'75×150mm', sheet:'75×150mm', finish:'High Gloss', slip:'-', desc:'Sleek, modern subway tiles in deep midnight black with a mirror-like glossy finish. Bold and dramatic.',
+    grad:'linear-gradient(145deg,#1a1a2e,#2a2a4e,#1a1a3e,#2a2a3e)' },
+  { id:12, name:'Sandy Beige Textured Wall Tile', cat:'Wall Tile', color:'beige', material:'Porcelain', app:'Bathroom', chip:'100×300mm', sheet:'100×300mm', finish:'Textured Matte', slip:'-', desc:'Natural sandy texture porcelain wall tile in warm beige. Creates a calming, spa-like atmosphere in any bathroom.',
+    grad:'linear-gradient(145deg,#d4b896,#c4a886,#e4c8a6,#d4b090)' },
+];
+
+// === TILE PATTERN SVG GENERATOR ===
+function tilePattern(grad, type) {
+  const patterns = {
+    mosaic: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:rgba(255,255,255,.15)"/><stop offset="100%" style="stop-color:rgba(0,0,0,.1)"/></linearGradient></defs><rect width="200" height="200" fill="url(#g)"/>${Array.from({length:16},(_,i)=>{const x=(i%4)*50+2,y=Math.floor(i/4)*50+2;return`<rect x="${x}" y="${y}" width="46" height="46" rx="2" fill="rgba(255,255,255,${.05+Math.random()*.1})" stroke="rgba(255,255,255,.08)" stroke-width=".5"/>`}).join('')}</svg>`,
+    strip: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">${Array.from({length:8},(_,i)=>`<rect x="4" y="${i*25+3}" width="192" height="20" rx="2" fill="rgba(255,255,255,${.04+Math.random()*.08})" stroke="rgba(255,255,255,.06)" stroke-width=".5"/>`).join('')}</svg>`,
+    kitkat: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">${Array.from({length:28},(_,i)=>{const col=i%4,row=Math.floor(i/4);const x=col*50+(row%2?25:0)+4,y=row*28+4;return`<rect x="${x}" y="${y}" width="18" height="24" rx="3" fill="rgba(255,255,255,${.05+Math.random()*.1})" stroke="rgba(255,255,255,.08)" stroke-width=".5"/>`}).join('')}</svg>`,
+    hex: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">${Array.from({length:12},(_,i)=>{const col=i%4,row=Math.floor(i/4);const cx=col*52+(row%2?26:0)+26,cy=row*60+30;return`<polygon points="${[0,1,2,3,4,5].map(j=>{const a=Math.PI/3*j-Math.PI/6;return`${cx+22*Math.cos(a)},${cy+22*Math.sin(a)}`}).join(' ')}" fill="rgba(255,255,255,${.04+Math.random()*.08})" stroke="rgba(255,255,255,.1)" stroke-width=".5"/>`}).join('')}</svg>`,
+    subway: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">${Array.from({length:20},(_,i)=>{const col=i%3,row=Math.floor(i/3);const x=col*68+(row%2?34:0)+2,y=row*30+2;return`<rect x="${x}" y="${y}" width="64" height="26" rx="1" fill="rgba(255,255,255,${.04+Math.random()*.08})" stroke="rgba(255,255,255,.08)" stroke-width=".5"/>`}).join('')}</svg>`,
+    square: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">${Array.from({length:9},(_,i)=>{const col=i%3,row=Math.floor(i/3);return`<rect x="${col*66+4}" y="${row*66+4}" width="60" height="60" rx="2" fill="rgba(255,255,255,${.04+Math.random()*.08})" stroke="rgba(255,255,255,.08)" stroke-width=".5"/>`}).join('')}</svg>`,
+    geo: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">${Array.from({length:8},(_,i)=>{const cx=50+(i%2)*100,cy=50+Math.floor(i/2)*50;return`<polygon points="${cx},${cy-30} ${cx+30},${cy} ${cx},${cy+30} ${cx-30},${cy}" fill="rgba(255,255,255,${.06+Math.random()*.08})" stroke="rgba(255,255,255,.1)" stroke-width=".5"/>`}).join('')}</svg>`
+  };
+  const typeMap = {'Pool Mosaic':'mosaic','Strip Tile':'strip','Kit Kat':'kitkat','Glass Mosaic':'mosaic','Terracotta':'square','Wall Tile':'geo','Subway':'subway'};
+  const pat = typeMap[type] || 'mosaic';
+  return `<div style="width:100%;height:100%;background:${grad};position:relative;"><div style="position:absolute;inset:0;opacity:.7;">${patterns[pat]}</div></div>`;
+}
+
+// === RENDER PRODUCT CARDS ===
+function renderCards(container, items, limit) {
+  const el = document.getElementById(container);
+  if (!el) return;
+  const list = limit ? items.slice(0, limit) : items;
+  el.innerHTML = list.map(p => `
+    <div class="product-card" onclick="showProduct(${p.id})">
+      <div class="pc-img">
+        <div class="tile-visual">${tilePattern(p.grad, p.cat)}</div>
+        ${p.badge ? `<span class="pc-badge">${p.badge}</span>` : ''}
+        <div class="pc-quick">Quick View</div>
+      </div>
+      <div class="pc-info">
+        <div class="pc-cat">${p.cat}</div>
+        <h4>${p.name}</h4>
+        <div class="pc-spec">${p.chip} · ${p.material}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// === NAVIGATION ===
+function navigateTo(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const target = document.getElementById('page-' + page);
+  if (target) {
+    target.classList.add('active');
+    target.style.animation = 'none';
+    target.offsetHeight; // reflow
+    target.style.animation = '';
+  }
+  closeAllMega();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  // Render products for specific pages
+  if (page === 'shop') renderCards('shop-products', products);
+  if (page === 'home') renderCards('home-products', products, 8);
+}
+
+// === MEGA MENU ===
+let megaTimeout = {};
+function openMega(id) {
+  clearTimeout(megaTimeout[id]);
+  closeAllMega();
+  const el = document.getElementById('mega-' + id);
+  if (el) el.classList.add('open');
+}
+function closeMegaDelay(id) {
+  megaTimeout[id] = setTimeout(() => {
+    const el = document.getElementById('mega-' + id);
+    if (el) el.classList.remove('open');
+  }, 150);
+}
+function closeAllMega() {
+  document.querySelectorAll('.mega-menu').forEach(m => m.classList.remove('open'));
+}
+
+// === SEARCH ===
+function toggleSearch() {
+  const overlay = document.getElementById('search-overlay');
+  const backdrop = document.getElementById('search-backdrop');
+  const isOpen = overlay.classList.contains('open');
+  overlay.classList.toggle('open');
+  backdrop.classList.toggle('open');
+  if (!isOpen) {
+    setTimeout(() => document.getElementById('search-input').focus(), 300);
+  }
+}
+function handleSearch(val) {
+  const results = document.getElementById('search-results');
+  if (val.length < 2) { results.innerHTML = ''; return; }
+  const found = products.filter(p =>
+    p.name.toLowerCase().includes(val.toLowerCase()) ||
+    p.cat.toLowerCase().includes(val.toLowerCase()) ||
+    p.color.toLowerCase().includes(val.toLowerCase()) ||
+    p.material.toLowerCase().includes(val.toLowerCase())
+  );
+  results.innerHTML = found.slice(0, 5).map(p => `
+    <div class="sr-item" onclick="showProduct(${p.id});toggleSearch();">
+      <div class="sr-thumb" style="background:${p.grad};border-radius:6px;"></div>
+      <div class="sr-info"><h6>${p.name}</h6><p>${p.cat} · ${p.chip}</p></div>
+    </div>
+  `).join('') || '<p style="padding:12px 0;color:var(--gray-500);font-size:14px;">No results found.</p>';
+}
+function searchFor(term) {
+  document.getElementById('search-input').value = term;
+  handleSearch(term);
+}
+
+// === MOBILE MENU ===
+function toggleMobile() {
+  document.getElementById('mobile-menu').classList.toggle('open');
+}
+
+// === PRODUCT DETAIL ===
+function showProduct(id) {
+  const p = products.find(x => x.id === id);
+  if (!p) return;
+  document.getElementById('pd-main-img').innerHTML = `<div style="width:100%;height:100%;border-radius:12px;overflow:hidden;">${tilePattern(p.grad, p.cat)}</div>`;
+  document.getElementById('pd-title').textContent = p.name;
+  document.getElementById('pd-cat').textContent = p.cat;
+  document.getElementById('pd-desc').textContent = p.desc;
+  document.getElementById('pd-chip').textContent = p.chip;
+  document.getElementById('pd-sheet').textContent = p.sheet;
+  document.getElementById('pd-material').textContent = p.material;
+  document.getElementById('pd-finish').textContent = p.finish;
+  document.getElementById('pd-app').textContent = p.app;
+  document.getElementById('pd-slip').textContent = p.slip;
+  document.getElementById('pd-breadcrumb-name').textContent = p.name;
+
+  // Render thumbnails
+  const thumbs = document.getElementById('pd-thumbs');
+  thumbs.innerHTML = [p, ...products.filter(x => x.id !== p.id).slice(0,3)].map((t,i) =>
+    `<div class="pd-thumb ${i===0?'active':''}" style="background:${t.grad};" onclick="this.parentElement.querySelectorAll('.pd-thumb').forEach(x=>x.classList.remove('active'));this.classList.add('active');document.getElementById('pd-main-img').innerHTML='<div style=\\'width:100%;height:100%;border-radius:12px;overflow:hidden;\\'>${tilePattern(t.grad,t.cat).replace(/'/g,"\\'")}</div>';"></div>`
+  ).join('');
+
+  // Related products
+  const related = products.filter(x => x.id !== p.id && (x.cat === p.cat || x.color === p.color)).slice(0, 4);
+  renderCards('pd-related-grid', related.length ? related : products.filter(x => x.id !== p.id).slice(0, 4));
+
+  navigateTo('product');
+}
+
+// === FILTER ===
+function applyFilter() {
+  // Visual feedback only for this demo
+  const filtersEl = document.getElementById('active-filters');
+  const checked = document.querySelectorAll('.filter-check input:checked');
+  const activeDots = document.querySelectorAll('.filter-color-dot.active');
+  let tags = [];
+  checked.forEach(c => {
+    const label = c.parentElement.textContent.replace('✓','').trim();
+    tags.push(label);
+  });
+  activeDots.forEach(d => tags.push(d.title));
+  filtersEl.innerHTML = tags.map(t =>
+    `<span class="active-filter">${t} <span class="af-remove" onclick="this.parentElement.remove();">&#10005;</span></span>`
+  ).join('');
+}
+
+// === SCROLL REVEAL ===
+function initReveal() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+}
+
+// === HEADER SCROLL ===
+window.addEventListener('scroll', () => {
+  const header = document.getElementById('site-header');
+  if (window.scrollY > 10) header.classList.add('scrolled');
+  else header.classList.remove('scrolled');
+});
+
+// === INIT ===
+document.addEventListener('DOMContentLoaded', () => {
+  renderCards('home-products', products, 8);
+  initReveal();
+  // Re-init reveals when navigating
+  const origNav = navigateTo;
+  window._navTo = navigateTo;
+  window.navigateTo = function(page) {
+    _navTo(page);
+    setTimeout(initReveal, 50);
+  // Load products from JSON (CMS-editable)
+  loadProducts();
+  };
+});
+</script>
+
+<!-- Netlify Identity Widget (required for CMS login) -->
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", user => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script>
+
+<!-- WhatsApp Floating Button -->
+<style>
+#whatsapp-float {
+  position: fixed; bottom: 24px; right: 24px; z-index: 999;
+  width: 56px; height: 56px; border-radius: 50%;
+  background: #25D366; color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 16px rgba(37,211,102,.4);
+  cursor: pointer; transition: transform .2s, box-shadow .2s;
+}
+#whatsapp-float:hover { transform: scale(1.1); box-shadow: 0 6px 24px rgba(37,211,102,.5); }
+#whatsapp-float svg { width: 28px; height: 28px; }
+#whatsapp-tooltip {
+  position: absolute; right: 68px; top: 50%; transform: translateY(-50%);
+  background: #fff; color: #333; padding: 8px 14px; border-radius: 8px;
+  font-size: 13px; font-weight: 500; white-space: nowrap;
+  box-shadow: 0 2px 12px rgba(0,0,0,.12);
+  opacity: 0; pointer-events: none; transition: opacity .2s;
+}
+#whatsapp-float:hover #whatsapp-tooltip { opacity: 1; }
+</style>
+
+<a id="whatsapp-float" href="https://wa.me/8613800138000" target="_blank" rel="noopener">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  <span id="whatsapp-tooltip">Chat on WhatsApp</span>
+</a>
+
+<!--
+=== TAWK.TO LIVE CHAT ===
+To activate:
+1. Go to https://www.tawk.to/ and create a free account
+2. Create a property for your website
+3. Copy the embed code and replace this comment block
+
+Example (replace YOUR_PROPERTY_ID and YOUR_WIDGET_ID):
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/YOUR_PROPERTY_ID/YOUR_WIDGET_ID';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+-->
+
+</body>
+</html>
