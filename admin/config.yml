@@ -6,6 +6,7 @@ media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
 collections:
+  # === 产品管理 ===
   - name: "products"
     label: "产品管理"
     files:
@@ -25,15 +26,129 @@ collections:
               - { name: "color", label: "颜色分类", widget: "select", options: ["blue", "green", "white", "black", "beige", "brown", "gray", "mixed"] }
               - { name: "material", label: "材质", widget: "select", options: ["Ceramic", "Porcelain", "Glass", "Natural Stone", "Terracotta"] }
               - { name: "app", label: "应用场景", widget: "select", options: ["Swimming Pool", "Bathroom", "Kitchen Backsplash", "Outdoor", "Feature Wall", "Commercial Projects"] }
-              - { name: "chip", label: "芯片尺寸 (Chip Size)", widget: "string" }
-              - { name: "sheet", label: "片材尺寸 (Sheet Size)", widget: "string" }
-              - { name: "finish", label: "表面处理 (Finish)", widget: "string" }
-              - { name: "slip", label: "防滑等级", widget: "string", default: "-" }
-              - { name: "desc", label: "产品描述", widget: "text" }
-              - { name: "badge", label: "标签 (如 New / Best Seller)", widget: "string", required: false }
-              - { name: "image", label: "产品图片", widget: "image", required: false }
-              - { name: "grad", label: "备用渐变色 (无图片时显示)", widget: "string", required: false }
+              - { name: "chip", label: "Chip Size", widget: "string" }
+              - { name: "sheet", label: "Sheet Size", widget: "string" }
+              - { name: "finish", label: "Finish", widget: "string" }
+              - { name: "slip", label: "Anti-Slip Rating", widget: "string", default: "-" }
+              - { name: "desc", label: "描述", widget: "text" }
+              - { name: "badge", label: "标签", widget: "string", required: false }
+              - { name: "image", label: "图片", widget: "image", required: false }
+              - { name: "grad", label: "渐变色", widget: "string", required: false }
 
+  # === 公告栏 ===
+  - name: "announcement"
+    label: "公告栏"
+    files:
+      - name: "announcement-bar"
+        label: "顶部公告"
+        file: "data/announcement.json"
+        format: "json"
+        fields:
+          - { name: "enabled", label: "启用", widget: "boolean", default: true }
+          - { name: "text", label: "公告文字", widget: "string" }
+          - { name: "link", label: "链接文字", widget: "string" }
+          - { name: "url", label: "链接地址", widget: "string" }
+
+  # === 导航菜单 ===
+  - name: "navigation"
+    label: "导航菜单"
+    files:
+      - name: "nav-menu"
+        label: "头部导航"
+        file: "data/navigation.json"
+        format: "json"
+        fields:
+          - { name: "logo", label: "Logo文字", widget: "string", default: "Flora Art Casa" }
+          - { name: "icon", label: "Logo图标", widget: "string", default: "F" }
+          - name: "menu"
+            label: "菜单"
+            widget: "list"
+            fields:
+              - { name: "label", label: "名称", widget: "string" }
+              - { name: "url", label: "链接", widget: "string" }
+
+  # === 英雄区域 ===
+  - name: "hero"
+    label: "英雄区域"
+    files:
+      - name: "hero-section"
+        label: "首页大图"
+        file: "data/hero.json"
+        format: "json"
+        fields:
+          - { name: "badge", label: "标签", widget: "string" }
+          - { name: "title", label: "主标题", widget: "string" }
+          - { name: "description", label: "描述", widget: "text" }
+          - { name: "primaryButton", label: "主按钮文字", widget: "string" }
+          - { name: "secondaryButton", label: "副按钮文字", widget: "string" }
+          - name: "floatingCard"
+            label: "浮层内容"
+            widget: "object"
+            fields:
+              - { name: "label", label: "标题", widget: "string" }
+              - { name: "subtext", label: "副标题", widget: "string" }
+
+  # === 分类网格 ===
+  - name: "categories"
+    label: "分类网格"
+    files:
+      - name: "category-section"
+        label: "产品分类"
+        file: "data/categories.json"
+        format: "json"
+        fields:
+          - { name: "label", label: "小标题", widget: "string" }
+          - { name: "title", label: "大标题", widget: "string" }
+          - { name: "description", label: "描述", widget: "text" }
+          - name: "categories"
+            label: "分类"
+            widget: "list"
+            fields:
+              - { name: "name", label: "名称", widget: "string" }
+              - { name: "description", label: "描述", widget: "string" }
+              - { name: "gradient", label: "背景渐变", widget: "string" }
+              - { name: "isLarge", label: "大卡片", widget: "boolean" }
+
+  # === 为什么选择我们 ===
+  - name: "why-choose"
+    label: "为什么选择我们"
+    files:
+      - name: "why-section"
+        label: "优势展示"
+        file: "data/why-choose.json"
+        format: "json"
+        fields:
+          - { name: "label", label: "小标题", widget: "string" }
+          - { name: "title", label: "大标题", widget: "string" }
+          - name: "items"
+            label: "优势项"
+            widget: "list"
+            fields:
+              - { name: "icon", label: "图标", widget: "string" }
+              - { name: "title", label: "标题", widget: "string" }
+              - { name: "description", label: "描述", widget: "text" }
+
+  # === 产品系列 ===
+  - name: "collections"
+    label: "产品系列"
+    files:
+      - name: "collection-section"
+        label: "特色系列"
+        file: "data/collections.json"
+        format: "json"
+        fields:
+          - { name: "label", label: "小标题", widget: "string" }
+          - { name: "title", label: "大标题", widget: "string" }
+          - { name: "description", label: "描述", widget: "text" }
+          - name: "collections"
+            label: "系列"
+            widget: "list"
+            fields:
+              - { name: "name", label: "名称", widget: "string" }
+              - { name: "description", label: "描述", widget: "string" }
+              - { name: "gradient", label: "背景渐变", widget: "string" }
+
+  # === 网站设置 ===
   - name: "settings"
     label: "网站设置"
     files:
@@ -42,12 +157,12 @@ collections:
         file: "data/settings.json"
         format: "json"
         fields:
-          - { name: "company_name", label: "公司名称", widget: "string", default: "Flora Art Casa" }
+          - { name: "company_name", label: "公司名称", widget: "string" }
           - { name: "tagline", label: "标语", widget: "string" }
-          - { name: "email", label: "联系邮箱", widget: "string" }
+          - { name: "email", label: "邮箱", widget: "string" }
           - { name: "phone", label: "电话", widget: "string", required: false }
-          - { name: "whatsapp", label: "WhatsApp 号码 (含国际区号，如 8613800138000)", widget: "string", required: false }
-          - { name: "address", label: "公司地址", widget: "string" }
-          - { name: "instagram", label: "Instagram 链接", widget: "string", required: false }
-          - { name: "facebook", label: "Facebook 链接", widget: "string", required: false }
-          - { name: "youtube", label: "YouTube 链接", widget: "string", required: false }
+          - { name: "whatsapp", label: "WhatsApp", widget: "string", required: false }
+          - { name: "address", label: "地址", widget: "string" }
+          - { name: "instagram", label: "Instagram", widget: "string", required: false }
+          - { name: "facebook", label: "Facebook", widget: "string", required: false }
+          - { name: "youtube", label: "YouTube", widget: "string", required: false }
