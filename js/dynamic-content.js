@@ -192,16 +192,7 @@ function createEditPanel() {
   const panel = document.createElement('div');
   panel.id = 'cms-edit-panel';
   panel.style.cssText = 'position:fixed;top:0;right:-400px;width:380px;height:100vh;background:white;z-index:10000;box-shadow:-4px 0 20px rgba(0,0,0,0.15);transition:right 0.3s;overflow-y:auto;padding:20px;font-family:system-ui,sans-serif;';
-  panel.innerHTML = `
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;padding-bottom:15px;border-bottom:1px solid #eee;">
-      <h2 style="margin:0;font-size:18px;color:#2844A8;">✏️ Edit Content</h2>
-      <button id="cms-panel-close" style="background:none;border:none;font-size:24px;cursor:pointer;color:#666;">&times;</button>
-    </div>
-    <div id="cms-panel-content"></div>
-    <div style="margin-top:20px;padding-top:15px;border-top:1px solid #eee;">
-      <button id="cms-save-btn" style="width:100%;padding:14px;background:#22c55e;color:white;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;">💾 Save & Open Editor</button>
-    </div>
-  `;
+  panel.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;padding-bottom:15px;border-bottom:1px solid #eee;"><h2 style="margin:0;font-size:18px;color:#2844A8;">✏️ Edit Content</h2><button id="cms-panel-close" style="background:none;border:none;font-size:24px;cursor:pointer;color:#666;">&times;</button></div><div id="cms-panel-content"></div><div style="margin-top:20px;padding-top:15px;border-top:1px solid #eee;"><button id="cms-save-btn" style="width:100%;padding:14px;background:#22c55e;color:white;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;">💾 Save & Open Editor</button></div>';
   document.body.appendChild(panel);
   
   document.getElementById('cms-panel-close').addEventListener('click', function() {
@@ -292,12 +283,12 @@ function renderSectionForm(section) {
     case 'announcement':
       html += createField('enabled', '启用', 'checkbox', data.enabled);
       html += createField('text', '公告文字', 'text', data.text);
-      html += createField('link[text]', '链接文字', 'text', data.link?.text);
-      html += createField('link[url]', '链接地址', 'text', data.link?.url);
+      html += createField('link[text]', '链接文字', 'text', data.link ? data.link.text : '');
+      html += createField('link[url]', '链接地址', 'text', data.link ? data.link.url : '');
       break;
     case 'navigation':
-      html += createField('logo[icon]', 'Logo图标', 'text', data.logo?.icon);
-      html += createField('logo[text]', 'Logo文字', 'text', data.logo?.text);
+      html += createField('logo[icon]', 'Logo图标', 'text', data.logo ? data.logo.icon : '');
+      html += createField('logo[text]', 'Logo文字', 'text', data.logo ? data.logo.text : '');
       break;
     case 'hero':
       html += createField('badge', '标签', 'text', data.badge);
@@ -324,12 +315,5 @@ function renderSectionForm(section) {
       html += createField('company_name', '公司名称', 'text', data.company_name);
       html += createField('email', '邮箱', 'text', data.email);
       html += createField('phone', '电话', 'text', data.phone);
-      html += createField('address', '地址', 'text', data.address);
-      break;
-  }
-  
-  return html;
-}
-
-function createField(key, l
+      html += createFiel
 ...(truncated)...
