@@ -1,0 +1,61 @@
+{
+  "logo": {
+    "text": "Flora Art Casa",
+    "icon": "F"
+  },
+  "menu": [
+    {
+      "label": "Home",
+      "url": "/"
+    },
+    {
+      "label": "Products",
+      "url": "#products",
+      "hasMegaMenu": true,
+      "megaMenu": {
+        "columns": [
+          {
+            "title": "Pool & Spa",
+            "items": [
+              { "label": "Pool Mosaic", "url": "/#products?cat=Pool Mosaic" },
+              { "label": "Anti-Slip Tiles", "url": "/#products?filter=anti-slip" }
+            ]
+          },
+          {
+            "title": "Wall & Floor",
+            "items": [
+              { "label": "Wall Tile", "url": "/#products?cat=Wall Tile" },
+              { "label": "Floor Tile", "url": "/#products?cat=Floor Tile" },
+              { "label": "Subway", "url": "/#products?cat=Subway" }
+            ]
+          },
+          {
+            "title": "Specialty",
+            "items": [
+              { "label": "Glass Mosaic", "url": "/#products?cat=Glass Mosaic" },
+              { "label": "Kit Kat", "url": "/#products?cat=Kit Kat" },
+              { "label": "Terracotta", "url": "/#products?cat=Terracotta" }
+            ]
+          }
+        ],
+        "featured": {
+          "title": "New Collection",
+          "subtitle": "2024 Arrivals",
+          "gradient": "linear-gradient(135deg, #2844A8 0%, #3a5acc 50%, #C9A96E 100%)"
+        }
+      }
+    },
+    {
+      "label": "Collections",
+      "url": "#collections"
+    },
+    {
+      "label": "About",
+      "url": "#about"
+    },
+    {
+      "label": "Contact",
+      "url": "#contact"
+    }
+  ]
+}

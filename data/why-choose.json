@@ -1,0 +1,26 @@
+{
+  "label": "Why Choose Flora Art Casa",
+  "title": "Why Choose Us",
+  "items": [
+    {
+      "icon": "🏆",
+      "title": "Premium Quality",
+      "description": "Sourced from the finest manufacturers, our tiles meet the highest standards of quality and durability."
+    },
+    {
+      "icon": "🎨",
+      "title": "Custom Design",
+      "description": "We offer bespoke tile solutions tailored to your unique vision and project requirements."
+    },
+    {
+      "icon": "📦",
+      "title": "Global Shipping",
+      "description": "Fast and reliable shipping worldwide. Expert packaging ensures your tiles arrive safely."
+    },
+    {
+      "icon": "💬",
+      "title": "Expert Support",
+      "description": "Our team of tile specialists provides professional advice from selection to installation."
+    }
+  ]
+}

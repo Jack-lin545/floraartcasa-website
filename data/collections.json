@@ -1,0 +1,27 @@
+{
+  "label": "Featured Collections",
+  "title": "Our Signature Collections",
+  "description": "Explore our handpicked tile collections curated for discerning designers and homeowners.",
+  "collections": [
+    {
+      "name": "Breeze Collection",
+      "description": "Art deco-inspired geometric patterns",
+      "gradient": "linear-gradient(145deg, #2844A8, #3a5acc, #5a7ae8)"
+    },
+    {
+      "name": "Ocean Collection",
+      "description": "Ocean-inspired blues and greens",
+      "gradient": "linear-gradient(145deg, #0a5c3a, #1a7c5a, #2a9c6a)"
+    },
+    {
+      "name": "Marble Collection",
+      "description": "Natural marble elegance",
+      "gradient": "linear-gradient(145deg, #e8e0d4, #f5f0ea, #ede5d9)"
+    },
+    {
+      "name": "Terracotta",
+      "description": "Warm earth tones",
+      "gradient": "linear-gradient(145deg, #8B4513, #A0522D, #CD853F)"
+    }
+  ]
+}

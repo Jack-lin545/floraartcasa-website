@@ -1,0 +1,17 @@
+{
+  "badge": "Premium Collection",
+  "title": "Transform Your Space with <em>Exquisite</em> Mosaic & Tile",
+  "description": "Discover our curated collection of premium mosaic tiles and art tiles for pools, bathrooms, kitchens, and commercial projects. Quality craftsmanship meets timeless design.",
+  "primaryButton": {
+    "text": "Explore Products",
+    "url": "#products"
+  },
+  "secondaryButton": {
+    "text": "Request Quote",
+    "url": "#contact"
+  },
+  "floatingCard": {
+    "label": "Free Design Consultation",
+    "subtext": "Book today and get 10% off your first order"
+  }
+}

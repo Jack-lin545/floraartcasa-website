@@ -1,0 +1,31 @@
+{
+  "label": "Shop by Category",
+  "title": "Browse Our Collections",
+  "description": "Explore our wide range of mosaic tiles and art tiles designed for every space.",
+  "categories": [
+    {
+      "name": "Pool Mosaic",
+      "description": "Anti-slip tiles for pools & spas",
+      "gradient": "linear-gradient(145deg, #1a4a7a, #2a6a9a, #3a8aba)",
+      "isLarge": false
+    },
+    {
+      "name": "Wall Tile",
+      "description": "Beautiful walls, timeless style",
+      "gradient": "linear-gradient(145deg, #2844A8, #3a5acc, #5a7ae8)",
+      "isLarge": false
+    },
+    {
+      "name": "Floor Tile",
+      "description": "Durable & elegant flooring",
+      "gradient": "linear-gradient(145deg, #8B4513, #A0522D, #CD853F)",
+      "isLarge": false
+    },
+    {
+      "name": "Glass Mosaic",
+      "description": "Stunning glass art tiles",
+      "gradient": "linear-gradient(145deg, #4a6a8a, #6a8aaa, #8aaaca)",
+      "isLarge": true
+    }
+  ]
+}
